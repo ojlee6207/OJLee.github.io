@@ -1,5 +1,0 @@
-1) 폴더추가: YoutubueClone\assets\style\
-
-2) header.css 추가
-
-3) index.html 파일 안에 <style>부분에서 .header부터 .user-icon class부분까지 별도로 생성 (.css)
