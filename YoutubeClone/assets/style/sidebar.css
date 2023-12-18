@@ -1,0 +1,18 @@
+.sidebar { width: 20%; background-color: #212121; padding: 2% 0;
+    position: fixed; /*고정 배치 적용 설정 */
+    top: 67px; /*화면 상단 기준 입력 값 만큼 간격을 둔다 */
+    bottom: 0; /*화면 하단 기준 입력 값 만큼 간격을 둔다 */
+    left: 0; /*화면 좌단 기준 입력 값 만큼 간격을 둔다 */
+     /*right*/
+  }
+.sidebar-link {
+                height: 55px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                margin-left: 15px;
+}
+.sidebar-link:hover { background-color: #4d4d4d; margin-right: 15px; }
+.sidebar-link div { display: inline-block; margin-left: 15px;
+             color: white; font-size: 14px; }
+.sidebar-link img { height: 37px; margin-bottom: 3px; }
