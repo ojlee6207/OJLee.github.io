@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="./css/login.css">
+
+</head>
+
+<body>
+    <h3>갤러리 로그인 페이지</h3><br>
+    <hr>
+
+    <section class="login-area">
+        <article class="input-area">
+            <input class="inputSet" type="text" id="userId" placeholder="아이디" />
+            <input class="inputSet" type="password" id="userPwd" placeholder="비밀번호" /><br>
+        </article>
+        <button onclick="login()" id="bt-login">로그인</button><br>
+    </section>
+    <input type="checkbox" id="saveId" /> 아이디 저장
+
+    <!-- Modal -->
+    
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="loginModalLabel">KH Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                   아이디 입력창 
+                    아이디 : <input class="form-control" type="text" id="userId" placeholder="아이디를 입력하세요." /><br>
+                    비밀번호 입력창
+                    비밀번호 : <input class="form-control" type="password" id="userPwd" placeholder="비밀번호를 입력하세요" />
+                    자동 로그인 체크박스
+                    <input type="checkbox" id="autoLogin" />
+                    <label for="autoLogin">자동 로그인</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">로그인</button>
+                     클래스 속성 비우기 attr + onclick 이벤트도 포함
+                    <span id="spinner-area" class="visually-hidden">
+                        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

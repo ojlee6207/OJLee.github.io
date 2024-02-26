@@ -1,0 +1,8 @@
+
+.login-area { display: flex; }
+.input-area { display: flex; flex-direction: column; }
+.input-area input { height: 20px; }
+#bt-login { 
+    width:80px; height:53px; background-color: skyblue;
+    color:white; font-weight:bold;
+}
