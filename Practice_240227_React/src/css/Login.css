@@ -1,0 +1,3 @@
+section {display:flex; justify-content:center;}
+article {display:flex; flex-direction:column; }
+article input {width:200px;}
