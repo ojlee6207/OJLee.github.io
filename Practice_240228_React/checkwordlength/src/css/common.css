@@ -1,0 +1,15 @@
+#textCheckBox {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#textWriting {
+    width : 70%;
+    height : 300px;
+}
+
+#numOfwords {
+    display:flex;
+    justify-content: center;
+}
