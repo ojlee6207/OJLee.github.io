@@ -12,3 +12,12 @@
     align-items: center;
     justify-content: center;
 }
+
+.center hr { width:50%; margin-top:2%; }
+
+.addresspage {
+    justify-content: center;
+    align-items: center;
+    
+}
+
