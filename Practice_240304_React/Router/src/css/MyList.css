@@ -1,0 +1,17 @@
+#tb_board {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    width:50%;
+    border: 1px solid black;
+    border-collapse:collapse;
+}
+
+#tb_board th, #tb_board td {
+    border: 1px solid black;
+}
+
+
+#tb_board > thead {
+    background-color: lightgray;
+}

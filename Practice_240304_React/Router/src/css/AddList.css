@@ -1,0 +1,37 @@
+.writeContent {
+    margin: auto;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px;
+    width:40%;
+    min-height: 80px;
+    height:25%;
+}
+
+.writeContent > label {
+    margin-right:10px;
+    vertical-align: top;
+}
+
+.writeContent > input {
+    min-width:80px;
+    width:80%;
+    min-height:30px;
+}
+
+.writeContent > textarea {
+    min-width:80px;
+    width:80%;
+    min-height:30px;
+}
+#AddC {
+    display: flex;
+    text-align: center;
+    justify-content: end;
+    align-items: center;
+    width:60px;
+    height:40px;
+    float:right;
+}
