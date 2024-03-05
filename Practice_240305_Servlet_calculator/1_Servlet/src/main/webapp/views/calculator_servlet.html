@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calculator Servlet Practice</title>
+</head>
+<body>
+	<h2>계산기 서블릿</h2>
+    <hr>
+    <form action="/1_Servlet/calculate" method="GET">
+        <div>
+            <input type="text" placeholder="내용을 입력해주세요" name="val1" />
+            <select name="calSign">
+                <option value="plus">+</option>
+                <option value="minus">-</option>
+                <option value="times">x</option>
+                <option value="divide">/</option>
+            </select>
+            <input type="text" placeholder="내용을 입력해주세요" name="val2" />
+            <input type="submit" value="실행" />
+        </div>
+    </form>
+</body>
+</html>
