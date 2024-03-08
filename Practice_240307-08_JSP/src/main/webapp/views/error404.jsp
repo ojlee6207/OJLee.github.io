@@ -7,6 +7,6 @@
 <title>ErrorPage</title>
 </head>
 <body>
-	<h1>오류 발생! - http 404</h1>
+	<h1 align="center" style="color:red">오류 발생! - http 404 : 페이지가 삭제되었거나 존재하지 않습니다.</h1>
 </body>
 </html>
