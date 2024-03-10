@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>01 Scripting Element</title>
+
+<style>
+	h1 {color:red;}
+</style>
 </head>
 <body>
 	<h1>스크립팅 원소</h1>
