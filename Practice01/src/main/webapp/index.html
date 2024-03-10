@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원정보 관련</title>
+</head>
+<style>
+    body { background-color: aqua;}
+    /* .boxtype {
+    } */
+    .box {
+        position:absolute;
+        top:50%; left:50%;
+        transform: translate(-50%, -50%);
+    }
+    h2 {
+        color: rgb(230, 252, 255);
+        text-shadow: 3px 3px darkblue;
+        text-align: center;
+    }
+    .linkjsp {
+        width: 150px;
+        height: 70px;
+        border-radius: 10%;
+    }
+    #login {
+        background-color: blue;
+        box-shadow:5px 5px darkblue;
+    }
+    #login > a {
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        text-decoration-line: none;
+    }
+    #signin {
+        background-color: greenyellow;
+        box-shadow:5px 5px green;
+    }
+    #signin > a {
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+        text-decoration-line: none;
+    }
+</style>
+<body>
+    <div class="boxtype">
+        <div class="box">
+            <h2>Happy day</h2>
+            <button class="linkjsp" id="login"><a href="views/loginForm.jsp">로그인</a></button><br><br>
+            <button class="linkjsp" id="signin"><a href="views/signIn.jsp">회원 가입</a></button>
+        </div>
+    </div>  
+</body>
+</html>
