@@ -6,21 +6,21 @@
 <meta charset="UTF-8">
 <title>JSP Project</title>
 <style>
-.outer {
-	background: black;
-	color: white;
-	width: 1000px;
-	margin: auto;
-}
+	.outer {
+		background: black;
+		color: white;
+		width: 1000px;
+		margin: auto;
+	}
 
-/* margin:auto; => 가운데 정렬하고자 할 때 */
-#enroll-form table {
-	margin: auto
-}
+	/* margin:auto; => 가운데 정렬하고자 할 때 */
+	#enroll-form table {
+		margin: auto
+	}
 
-#enroll-form input {
-	margin: 5px
-}
+	#enroll-form input {
+		margin: 5px
+	}
 </style>
 </head>
 <body>
