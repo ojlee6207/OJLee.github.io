@@ -10,7 +10,7 @@ public class Board {
 	private String boardContent;
 	private String boardWriter;	// 작성자 | 아이디, user_no(pk)
 	private int count;
-	private Date createDate;
+	private String createDate;
 	private String status;
 	
 	// 생성자
@@ -19,7 +19,7 @@ public class Board {
 	}
 	
 	public Board(int boardNo, int boardType, String categoryNo, String boardTitle, String boardContent,
-			String boardWriter, int count, Date createDate, String status) {
+			String boardWriter, int count, String createDate, String status) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
@@ -32,6 +32,30 @@ public class Board {
 		this.status = status;
 	}
 	
+	
+	public Board(int boardNo, String categoryNo, String boardTitle, String boardWriter, int count, String createDate) {
+		super();
+		this.boardNo = boardNo;
+		this.categoryNo = categoryNo;
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.count = count;
+		this.createDate = createDate;
+	}
+
+	
+	public Board(int boardNo, String categoryNo, String boardTitle, String boardContent, String boardWriter,
+			String createDate) {
+		super();
+		this.boardNo = boardNo;
+		this.categoryNo = categoryNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.createDate = createDate;
+	}
+	
+
 	// getter setter
 	public int getBoardNo() {
 		return boardNo;
@@ -75,10 +99,10 @@ public class Board {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getStatus() {

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 04</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+    <h3>* 데이터 통신(Ajax)</h3>
+    <h4>- javascript 방식</h4>
+    <pre>
+        // XMLHttpRequest 객체 사용
+        // Ajax 요청 초기화
+        const 변수명 = new XMLHttpRequest();
+        변수명.open(요청방식, 요청주소);
+
+        // 요청 상태 변화 추적
+        변수명.onreadystatechange = function() {
+            // readyState : 4 -> 완료
+            // 요청 상태가 완료가 아닌 경우 메소드 종료
+            if(변수명.readyState != 4) return; 
+
+            // 요청에 대한 성공 여부 => status(HTTP Status) : 200
+            if(변수명.status == 200) {
+                // 요청 성공시 처리할 내용
+                // responseText : 요청 결과
+                console.log(변수명.responseText);
+            } else {
+                // 요청 실패 시 처리할 내용
+                // 4xx : 요청 오류(클라이언트): front
+                // 5xx : 응답 오류(서버)
+                console.log(변수명.status);
+            }
+        }
+    </pre>
+    <br>
+    <h4>- jQuery 방식</h4>
+    <pre>
+        $.ajax({
+            url: 요청 주소[,
+            method: 요청방식(default:GET),
+            data: 요청 시 전달할 데이터
+            ],
+            success: function(변수명) {
+                // 요청 성공 시 처리할 내용
+                // 변수명 : 요청 결과를 담은 변수
+            },
+            error: function(변수명) {
+                // 요청 실패 시 처리할 내용
+                // 변수명 : 요청 실패에 대한 에러 내용을 담은 변수
+            }
+        })
+    </pre>
+    <hr>
+    <div id="area1" style="border: 1px solid goldenrod; height:300px; background-color:beige"></div>
+    <script>
+        $(function(){
+            $.ajax({
+                url: 'http://192.168.10.11:4000/',
+                success: function(result){
+                    $("#area1").append("요청 성공<br>"+result);
+                    console.log(result);
+                },
+                error: function(err){
+                    $("#area1").append("요청 실패");
+                    console.log(err);
+                }
+            });
+        });
+    </script>
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

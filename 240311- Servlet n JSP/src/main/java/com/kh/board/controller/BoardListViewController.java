@@ -1,6 +1,7 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.vo.Board;
 import com.kh.board.service.BoardService;
 import com.kh.common.model.PageInfo;
 
@@ -90,7 +92,10 @@ public class BoardListViewController extends HttpServlet {
 		// 페이징바 관련 객체 com.kh.common.PageInfo 추가
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit
 								, maxPage, startPage, endPage);
+		ArrayList<Board> list = new BoardService().selectList(pi);
 		
+		request.setAttribute("pi", pi);
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/board/boardListView.jsp").forward(request, response);
 	}
 
