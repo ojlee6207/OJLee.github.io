@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>EL 연산</h1>
+	<h3>1. 산술 연산</h3>
+	기존 방식 (el 사용 X) :
+		<%= (int)request.getAttribute("big") %> + <%= (int)request.getAttribute("small") %>
+		= <%= (int)request.getAttribute("big")+ (int)request.getAttribute("small") %>
+		
+	<br><br>
+	EL 방식 <br>
+	<%-- EL사용시 형변환이 필요 X. 알아서 형변환을 해줌 --%>
+	${ big } + ${ small } = ${ big + small } <br>
+	${ big } - ${ small } = ${ big - small } <br>
+	${ big } X ${ small } = ${ big * small } <br>
+	${ big } / ${ small } = ${ big / small } <br>
+	${ big } % ${ small } = ${ big % small } <br>
+</body>
+</html>

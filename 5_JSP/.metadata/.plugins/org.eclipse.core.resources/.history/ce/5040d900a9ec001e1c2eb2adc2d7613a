@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.kh.model.vo.Person"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>* 기존 방식인 스크립트릿과 표현식을 이용해서 각 scope에 있는 데이터 출력</h3>
+	<%
+		// classRoom, student, academy, teacher
+		String classRoom = (String)request.getAttribute("classRoom");
+		Person student = (Person)request.getAttribute("Student");
+		
+		String academy = (String)session.getAttribute("academy");
+		Person teacher = (Person)session.getAttribute("teacher");
+		
+		String scope1 = (String)request.getAttribute("scope");
+		String scope2 = (String)session.getAttribute("scope");
+		
+		String scope3 = (String)application.getAttribute("scope");
+	%>
+	<p>
+		학원명: <%= academy %> <br>
+		강의장: <%= classRoom %> <br>
+		강사 : <%= teacher.getName(), teacher.getAge(), teacher.getGender() %>
+		
+	</p>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.kh.board.model.vo.*" %>    
+<%
+	Board b = (Board)request.getAttribute("board");
+	Attachment at = (Attachment)request.getAttribute("attachment");
+	Reply r = (Reply)request.getAttribute("reply");
+%>    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP Project</title>
+<style>
+	.outer { background: black; color: white; 
+			 width: 1000px; height: auto; 
+			 margin:auto; margin-top: 50px; }
+			 
+	.outer table {
+		border: 1px solid white;
+		border-collapse: collapse;
+	}
+	
+	.outer > table tr, .outer > table td {
+		border: 1px solid white; 
+	}
+	.comm_row first-child { width: 150px; }
+	.comm_row nth-child(2){ width: 400px;}
+	.comm_row last-child { width: 100px;}
+</style>
+</head>
+<body>
+	<%@ include file="../common/menubar.jsp" %>
+	
+	<div class="outer" align="center">
+		<br>
+		<h2 align="center">일반게시글 상세보기</h2>
+		<br>
+		
+		<table>
+			<tr>
+				<th>카테고리</th>
+				<td><%= b.getCategoryNo() %></td>
+				<th>제목</th>
+				<td><%= b.getBoardTitle() %></td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<td><%= b.getBoardWriter() %></td>
+				<th>작성일</th>
+				<td><%= b.getCreateDate() %></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td colspan="3">
+					<p style="height: 200px"><%= b.getBoardContent() %></p>
+				</td>
+			</tr>
+			<tr>
+				<th>첨부파일</th>
+				<td colspan="3">
+					<% if (at == null) { %>
+						<%-- 첨부파일이 없는 경우 --%>
+						첨부파일이 없습니다.
+					<% } else { %>
+						<%-- 첨부파일이 있는 경우 --%>
+						<a download="<%= at.getOriginName() %>" href="<%= contextPath %>/<%= at.getFilePath() + at.getChangeName() %>"><%= at.getOriginName() %></a>
+					<% } %>
+				</td>
+			</tr>
+		</table>
+		<br><br>
+		<div align="center">
+			<a href="<%= contextPath %>/list.bo?cpage=1" class="btn btn-secondary">목록가기</a>
+			<%-- 로그인한 사용자와 게시글 작성자가 동일한 경우 표시 --%>
+			<% if(loginUser != null && b.getBoardWriter().equals(loginUser.getUserId())) { %>
+				<a href="" class="btn btn-warning">수정</a>
+				<a href="" class="btn btn-danger">삭제</a>
+			<% } %>
+		</div>
+		<br>
+		<div id="reply-area">
+			<table border="1" align="center">
+				<thead>
+					<tr>
+						<th>댓글작성</th>
+						<td>
+							<textarea rows="3" cols="50" style="resize:none;"></textarea>
+						</td>
+						<td>
+							<button onclick="sendPostReply()">댓글 등록</button>
+						</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><div class="comm_row" id="userId"></div></td>
+						<td><div class="comm_row" id="replyContent"></div></td>
+						<td><div class="comm_row" id="replyDay"></div></td>
+					</tr>
+				</tbody>
+			</table>
+			<script>
+				$(function(){
+					// 페이지가 로드되었을 때 아래 함수 호출
+					selectReplyList();
+				});
+				
+				function selectReplyList() {
+					// rlist.do 로 요청하여 결과를 댓글 목록에 표시
+					//  - 전달 데이터 => boardNo
+				}
+			</script>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+package com.kh.board.service;
+
+import static com.kh.common.JDBCTemplate.*;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.kh.board.model.dao.BoardDao;
+import com.kh.board.model.vo.Attachment;
+import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.Category;
+import com.kh.common.model.PageInfo;
+
+public class BoardService {
+
+	public int selectListCount() {
+		int count = 0;
+		
+		Connection conn = getConnection();
+		count = new BoardDao().selectListCount(conn); // select(DQL)
+		
+		close(conn);
+		return count;
+	}
+	
+	public ArrayList<Board> selectList(PageInfo pi) {
+		ArrayList<Board> list = new ArrayList<>();
+		
+		Connection conn = getConnection();
+		list = new BoardDao().selectList(conn, pi);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<Category> selectCategoryList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Category> list = new BoardDao().selectCategoryList(conn);
+		close(conn);
+		
+		return list;
+	}
+
+	public int insertBoard(Board b, Attachment at) {	
+		Connection conn = getConnection();
+		
+		int result1 = new BoardDao().insertBoard(conn, b);
+		int result2 = 1; // 첨부파일이 없는 경우도 존재 할 수 있기 때문
+		if (at != null) {
+			result2 = new BoardDao().insertAttachment(conn, at);
+		}
+		
+		if (result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2;
+	}
+
+	public Board selectDetailBoard(int boardNo) {
+		Board b = null;
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().increaseCount(conn, boardNo);
+		
+		if( result > 0 ) {
+			commit(conn);
+			
+			b = new BoardDao().selectBoardDetail(conn, boardNo);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return b;
+	}
+
+	public Attachment selectAttachment(int boardNo) {
+		Attachment at = null;
+		Connection conn = getConnection();
+		
+		at = new BoardDao().selectAttachment(conn, boardNo);
+		
+		close(conn);
+		
+		return at;
+	}
+
+}
