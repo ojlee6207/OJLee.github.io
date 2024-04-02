@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Custom Action Tag(JSTL)</title>
+</head>
+<body>
+	<h1>JSTL이란?</h1>
+	<ul>
+		<li>JSP Standard Tag Library의 약자로 JSP에서 사용되는 커스텀 액션태그</li>
+		<li>공통적으로 자주 사용되는 코드를 집합하여 좀 더 쉽게 사용할 수 있도록 태그화한 표준 제공 라이브러리</li>
+	</ul>
+	<h3>* 라이브러리 다운로드 및 추가</h3>
+	<ol>
+		<li><a href="https://tomcat.apache.org/" target="_blank">아파치 톰캣</a>사이트 접속</li>
+		<li>Tablibs 메뉴 접속</li>
+		<li>4가지 라이브러리 (jar) 다운로드</li>
+		<li>WEB-INF/lib/ 폴더에 추가</li>
+	</ol>
+	<br>
+	<h3>* JSTL 선언 방법</h3>
+	<p>
+		JSTL을 사용하고자 하는 JSP 페이지 상단에<br>
+		taglib 지시어를 사용하여 선언<br>
+		&lt;%@ taglib prefix="별칭" uri="라이브러리 파일상의 uri주소" %&gt;
+	</p>
+	<h4>1) JSTL Core Library</h4>
+	<p>	
+		변수, 조건문, 반복문 등 로직과 관련된 문법을 제공
+	</p>
+	<a href="01_core.jsp">Core Library</a>
+	<br>
+	<h4>2)JSTL Formatting Library</h4>
+	<p>
+		숫자, 날짜 및 시간 데이터의 출력형식을 지정할 때 사용 하는 문법 제공
+	</p>
+	<a href="02_fmt.jsp">fmt library</a>
+</body>
+</html>

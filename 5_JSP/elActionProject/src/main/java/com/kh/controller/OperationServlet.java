@@ -34,17 +34,18 @@ public class OperationServlet extends HttpServlet {
 		request.setAttribute("big", 10000);
 		request.setAttribute("small", 10);
 		
-		request.setAttribute("str1", "반갑습니다.");
+		request.setAttribute("str1", "반가워요");
 		request.setAttribute("str2", "잘가요");
 		
-		request.setAttribute("p1", new Person("이오재", 32, "남"));
+		request.setAttribute("p1", new Person("아이유", 30,"여자"));
 		request.setAttribute("p2", null);
 		
 		ArrayList<String> list1 = new ArrayList<>();
-		request.setAttribute("list1", list1); // 비어있는 리스트 []
+		request.setAttribute("list1", list1);	// 비어있는 리스트 []
+		
 		ArrayList<String> list2 = new ArrayList<>();
 		list2.add("ㅋㅋㅋㅋㅋㅋ");
-		request.setAttribute("list2", list2); // 데이터가 있는 리스트 ["ㅋㅋㅋㅋㅋㅋ"]
+		request.setAttribute("list2", list2);	// 데이터가 담긴 리스트 ["ㅋㅋㅋㅋㅋㅋ"]
 		
 		request.getRequestDispatcher("views/1_EL/02_elOperation.jsp").forward(request, response);
 		

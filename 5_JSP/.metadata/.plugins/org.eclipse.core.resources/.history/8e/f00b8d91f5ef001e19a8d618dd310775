@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>fmt Library</title>
+</head>
+<body>
+	<h1>fmt Library</h1>
+	
+	<h3>* formatNumber</h3>
+	<p>
+		숫자 관련된 데이터의 포맷을 지정<br>
+		- 표현하려는 데이터의 형식을 통화기호, $ 등 원하는 형식에 맞게 지정하는 태그<br>
+		<br>
+		(fmt:formatNumber value="출력할값" [groupingUsed="true|false"]
+										[type="percent|currency"]
+										[currenySymbol="통화기호문자"])
+	</p>
+</body>
+</html>

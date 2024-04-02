@@ -10,9 +10,11 @@
     <fullyQualifiedTypeName name="com.kh.common.model.PageInfo"/>
     <fullyQualifiedTypeName name="com.kh.board.model.vo.Category"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="com.kh.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="model.vo.Member"/>
     <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.kh.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="com.kh.board.service.BoardService"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 </qualifiedTypeNameHistroy>

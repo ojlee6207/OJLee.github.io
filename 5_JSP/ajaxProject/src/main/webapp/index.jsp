@@ -217,8 +217,9 @@
 			$.ajax({
 				url: 'jqAjax3.do',
 				data: { userNo: $("#userNo").val() },
-				success: function(){
-					
+				success: function(result){
+                    $("#output3").text("회원 정보: " + result.userName 
+                    		+ ", " + result.age + "세, " + result.gender);
 				},
 				error: function(){
 					console.log("통신 실패#3 : 회원번호 조회")
