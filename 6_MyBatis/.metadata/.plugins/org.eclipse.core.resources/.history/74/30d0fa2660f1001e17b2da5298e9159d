@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<!-- namespace: 현재 mapper파일의 고유한 별칭 -->
+	
+	<!-- 
+		* DML 작성
+		<insert|update|delete id="sql문_식별자"
+							  [parameterType="전달받을_데이터타입(전체클래스명|별칭)"]>
+			실행할 SQL문
+		</insert|update|delete>
+	-->
+</mapper>

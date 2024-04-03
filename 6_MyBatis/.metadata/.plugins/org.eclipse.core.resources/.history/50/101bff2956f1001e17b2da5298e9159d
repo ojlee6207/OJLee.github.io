@@ -1,0 +1,5 @@
+package com.kh.mybatis.member.service;
+
+public interface MemberService {
+	// 인터페이스 : 상수필드(public static final)+ 추상 메소드(abstract)	
+}

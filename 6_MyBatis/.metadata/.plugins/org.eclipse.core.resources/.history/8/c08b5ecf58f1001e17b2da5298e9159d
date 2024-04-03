@@ -1,0 +1,22 @@
+package com.kh.mybatis.member.service;
+
+import com.kh.mybatis.member.model.vo.Member;
+
+public class MemberServiceImpl implements MemberService{
+	
+	public int insertMember(Member m) {
+		return 0;
+	}
+	
+	public Member loginMember(Member m) {
+
+		return null;
+	}
+	
+	public int updateMember(Member m) {
+		return 0;
+	}
+	public int deleteMember(String userId) {
+		return 0;
+	}
+}
