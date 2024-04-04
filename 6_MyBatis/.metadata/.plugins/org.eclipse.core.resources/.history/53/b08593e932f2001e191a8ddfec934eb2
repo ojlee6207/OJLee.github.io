@@ -1,0 +1,31 @@
+package com.kh.mybatis.board.model.dao;
+
+import java.util.ArrayList;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.kh.mybatis.board.model.vo.Board;
+import com.kh.mybatis.board.model.vo.PageInfo;
+
+public class BoardDao {
+	
+//	int count = bDao.selectListCount(sqlSession);
+	public int selectListCount(SqlSession sqlSession) {
+
+		return sqlSession.selectOne("boardMapper.selectListCount");
+	}
+	
+//	ArrayList<Board> list = bDao.selectList(sqlSession, pi);
+	public ArrayList<Board> selectList(SqlSession sqlSession, PageInfo pi) {
+		// 전체 목록을 가지고 올 때
+		// sqlSession.selectList("boardMapper.selectList");
+		
+		/*
+		 * * MyBatis에선 페이징 처리를 위해 RowBounds라는 클래스 제공
+		 * - offset : DB에서 가지고 온 리스트에서 몇번째 부터 조회를 할 것인가에 대한 값
+		 * - limit : offset으로 부터 몇개를 조회 할 것인가
+		 * */
+		return sqlSession.selectList(null, pi, null);
+	}
+
+}

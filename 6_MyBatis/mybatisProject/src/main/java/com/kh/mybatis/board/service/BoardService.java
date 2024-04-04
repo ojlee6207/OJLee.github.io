@@ -1,0 +1,22 @@
+package com.kh.mybatis.board.service;
+
+import java.util.ArrayList;
+
+import com.kh.mybatis.board.model.vo.Board;
+import com.kh.mybatis.board.model.vo.PageInfo;
+import com.kh.mybatis.board.model.vo.Reply;
+
+public interface BoardService {
+	
+	int selectListCount();
+	
+	ArrayList<Board> selectList(PageInfo pi);
+	
+	int increaseCount(int boardNo);
+	
+	Board selectBoard(int boardNo);
+	
+	ArrayList<Reply> selectReplyList(int boardNo);
+	
+	int insertReply(int boardNo);
+}

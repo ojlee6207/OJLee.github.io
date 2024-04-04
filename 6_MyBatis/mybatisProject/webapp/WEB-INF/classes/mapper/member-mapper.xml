@@ -20,6 +20,7 @@
 			<result column="DB컬럼명" property="vo객체의_필드명" />
 			...
 		</resultMap>
+		
 		* DQL(SELECT) 작성
 		<select id="sql문_식별자"
 				resultType="조회된 결과를 반환하고자 하는 자바(일반적인)타입(int, String, ..)"

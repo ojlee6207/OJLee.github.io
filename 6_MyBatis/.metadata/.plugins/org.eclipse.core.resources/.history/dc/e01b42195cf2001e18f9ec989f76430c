@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+
+	<resultMap id="boardResultSet" type="Board">
+		<result column="board_no" property="boardNo" />
+		<result column="board_title" property="boardTitle" />
+		<result column="board_content" property="boardContent" />
+		<result column="USER_ID" property="boardWriter" />
+		<result column="count" property="count" />
+		<result column="create_date" property="createDate" />
+		<!-- <result column="status" property="status" /> -->
+	</resultMap>
+
+	<!--
+		* resultType : mybatis에서 설정해 놓은 별칭 사용
+		(공식사이트:매퍼설정 > TypeAliases 아래 부분) 
+	-->
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE STATUS = 'Y'
+	</select>
+	
+	<select id="selectList" resultMap="boardResultSet" parameterType="Board">
+		SELECT BOARD_NO, BOARD_TITLE, USER_ID, COUNT, CREATE_DATE
+		FROM BOARD B JOIN MEMBER ON (BOARD_WRITER = USER_NO) 
+		WHERE B.STATUS='Y'
+		ORDER BY BOARD_NO DESC
+	</select>
+	
+	<update id="increaseCount">
+		UPDATE BOARD SET COUNT= COUNT+1 
+		WHERE BOARD_NO=${boardNo} AND STATUS='Y'
+	</update>
+	
+	<select id="selectBoard" resultMap="boardResultSet" parameterType="Board">
+		
+	</select>
+</mapper>

@@ -1,0 +1,13 @@
+package com.kh.mybatis.template;
+
+import com.kh.mybatis.board.model.vo.PageInfo;
+
+public class Pagination {
+	
+	public PageInfo getPageInfo(int listCount, int currentPage,
+							int pageLimit, int boardLimit) {
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit);
+		
+		return pi;
+	}
+}
