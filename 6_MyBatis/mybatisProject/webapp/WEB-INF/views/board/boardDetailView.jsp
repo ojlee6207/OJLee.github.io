@@ -48,17 +48,20 @@
 		
 		<%-- ajax 사용하지 않고, 동기식 방식으로 데이터를 가지고 올것. --%>
 		<table border="1">
-			<tr>
-				<td width="100">댓글작성</td>
-				<td width="400">
-					<textarea></textarea>
-				</td>
-				<td width="100">
-					<button>등록</button>
-				</td>
-			</tr>
+			<form action="insertReply.rp" method="POST">
+				<tr>
+					<td width="100">댓글작성</td>
+					<td width="400">
+						<textarea name="replyContent"></textarea>
+					</td>
+					<td width="100">
+						<button type="submit">등록</button>
+					</td>
+				</tr>
+			</form>
 			<tr>
 				<%-- 댓글 총 수 표시 --%>
+				<%--  jstl fn 사용시 : ${ fn:length(rList) } --%>
 				<td colspan="3"><b>댓글("${rlist.size()}")</b></td>
 			</tr>
 			<%-- 댓글 목록 --%>

@@ -29,14 +29,50 @@
 		ORDER BY BOARD_NO DESC
 	</select>
 	
-	<update id="increaseCount">
+	<update id="increaseCount" parameterType="_int">
 		UPDATE BOARD SET COUNT= COUNT+1 
-		WHERE BOARD_NO=${boardNo} AND STATUS='Y'
+		WHERE BOARD_NO=#{boardNo} AND STATUS='Y'
 	</update>
 	
-	<select id="selectBoard" resultMap="boardResultSet" parameterType="Board">
+	<select id="selectBoard" resultMap="boardResultSet" parameterType="_int">
 		SELECT BOARD_NO, BOARD_TITLE, USER_ID, COUNT, CREATE_DATE, BOARD_CONTENT
 		FROM BOARD B JOIN MEMBER ON (BOARD_WRITER = USER_NO) 
-		WHERE BOARD_NO= ${boardNo} AND B.STATUS='Y'
+		WHERE BOARD_NO= #{boardNo} AND B.STATUS='Y'
+	</select>
+	
+	<select id="selectSearchCount" resultType="_int">
+		select count(*)
+		from board b join member on (board_writer = user_no)
+		where b.status='Y' 
+ 		<choose>
+  			<when test="condition == 'writer'">
+  				and user_id
+  			</when>
+  			<when test="condition == 'title'">
+    			and board_title
+    		</when>
+ 			<otherwise>
+				and board_content
+			</otherwise>
+
+		</choose>
+		like '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="selectSearchList" resultMap="boardResultSet" parameterType="Board">
+		SELECT BOARD_NO, BOARD_TITLE, USER_ID, COUNT, CREATE_DATE
+		FROM BOARD B JOIN MEMBER ON (BOARD_WRITER = USER_NO) 
+		WHERE B.STATUS='Y'
+		<if test="condition == 'writer'">
+			and user_id
+		</if>
+		<if test="condition == 'title'">
+			and board_title
+		</if>
+		<if test="condition == 'content'">
+			and board_content
+		</if>	
+		like '%' || #{keyword} || '%'
+		ORDER BY BOARD_NO DESC
 	</select>
 </mapper>

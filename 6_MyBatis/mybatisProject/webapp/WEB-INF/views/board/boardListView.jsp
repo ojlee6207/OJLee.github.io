@@ -18,7 +18,16 @@
 		<h1>게시판</h1>
 		<br>
 		<div id="search-area">
-		
+			<form action="search.bo" method="get">
+				<input type="hidden" name="cpage" value="1" />
+				<select name="condition">
+					<option value="writer">작성자</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="keyword" />
+				<button type="submit">검색</button>
+			</form>
 		</div>
 		<br>
 		
@@ -54,14 +63,27 @@
 		<br>
 		
 		<div id="paging-area">
-			<c:if test="${pi.currentPage gt 1 }">
-				<a href="list.bo?cpage=${ pi.currentPage-1 }">&lt;</a>
+			<c:if test="${keyword eq null}">
+				<c:if test="${pi.currentPage gt 1 }">
+					<a href="list.bo?cpage=${ pi.currentPage-1 }">&lt;</a>
+				</c:if>
+				<c:forEach var ="p" begin="${pi.startPage}" end="${pi.endPage}">
+					<a href="list.bo?cpage=${ p }">${ p }</a>
+				</c:forEach>
+				<c:if test="${pi.currentPage lt pi.maxPage }">
+					<a href="list.bo?cpage=${ pi.currentPage+1 }">&gt;</a>				
+				</c:if>
 			</c:if>
-			<c:forEach var ="p" begin="${pi.startPage}" end="${pi.endPage}">
-				<a href="list.bo?cpage=${ p }">${ p }</a>
-			</c:forEach>
-			<c:if test="${pi.currentPage lt pi.maxPage }">
-				<a href="list.bo?cpage=${ pi.currentPage+1 }">&gt;</a>				
+			<c:if test="${keyword ne null}">
+				<c:if test="${pi.currentPage gt 1}">
+					<a href="search.bo?cpage=${ pi.currentPage-1 }&condition=${param.condition}&keyword=${param.keyword}">&lt;</a>
+				</c:if>
+				<c:forEach var ="p" begin="${pi.startPage}" end="${pi.endPage}">
+					<a href="search.bo?cpage=${ p }&condition=${param.condition}&keyword=${param.keyword}">${ p }</a>
+				</c:forEach>
+				<c:if test="${pi.currentPage lt pi.maxPage }">
+					<a href="search.bo?cpage=${ pi.currentPage+1 }&condition=${param.condition}&keyword=${param.keyword}">&gt;</a>				
+				</c:if>
 			</c:if>
 		</div>
 		<br>

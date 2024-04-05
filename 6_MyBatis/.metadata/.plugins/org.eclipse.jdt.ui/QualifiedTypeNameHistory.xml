@@ -2,7 +2,7 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="org.apache.ibatis.io.Resources"/>
     <fullyQualifiedTypeName name="com.kh.mybatis.member.service.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="com.kh.mybatis.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="com.kh.mybatis.template.Pagination"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
 </qualifiedTypeNameHistroy>

@@ -45,7 +45,7 @@
 		                <tr>
 		                    <td colspan="3" align="center">
 		                        <a href="enrollForm.me">회원가입</a>
-		                        <a href="">아이디/비번찾기</a>
+		                        <a href="infoCheck.me">아이디/비번찾기</a>
 		                    </td>
 		                </tr>
 		            </table>

@@ -1,6 +1,7 @@
 package com.kh.mybatis.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -53,13 +54,29 @@ public class BoardDao {
 
 //	Board b = bDao.selectBoard(sqlSession, boardNo);
 	public Board selectBoard(SqlSession sqlSession, int boardNo) {
-
 		return sqlSession.selectOne("boardMapper.selectBoard", boardNo);
 	}
 	
 //	ArrayList<Reply> rlist = bDao.selectReplyList(sqlSession, boardNo);
 	public ArrayList<Reply> selectReplyList(SqlSession sqlSession, int boardNo) {
 		return (ArrayList)sqlSession.selectList("replyMapper.selectReplyList", boardNo);
+	}
+
+	public int increaseReply(SqlSession sqlSession, int refBNo) {
+
+		return sqlSession.insert("replyMapper.insertReply", refBNo);
+	}
+
+	public int selectSearchCount(SqlSession sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("boardMapper.selectSearchCount", map);
+	}
+
+	public ArrayList<Board> selectSearchList(SqlSession sqlSession 
+								, HashMap<String, String> map, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rBounds = new RowBounds(offset, limit);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList", map, rBounds);
 	}
 
 }

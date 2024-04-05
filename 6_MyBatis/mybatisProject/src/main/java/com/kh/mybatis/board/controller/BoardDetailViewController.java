@@ -38,13 +38,14 @@ public class BoardDetailViewController extends HttpServlet {
 		BoardService bService = new BoardServiceImpl();
 		// 1) 조회수 증가
 		int result = bService.increaseCount(boardNo);
-		// 2) 게시글 상세 정보 조회
-		Board b = bService.selectBoard(boardNo);
-		// 3) 댓글 목록 조회
-		ArrayList<Reply> rlist = bService.selectReplyList(boardNo);
 		
 		// result가 0 이상이면 b, rlist를 가져오는 controller 제작
 		if(result > 0) {
+			// 2) 게시글 상세 정보 조회
+			Board b = bService.selectBoard(boardNo);
+			// 3) 댓글 목록 조회
+			ArrayList<Reply> rlist = bService.selectReplyList(boardNo);
+			
 			request.setAttribute("b", b);
 			request.setAttribute("rlist", rlist);
 			request.getRequestDispatcher("WEB-INF/views/board/boardDetailView.jsp").forward(request, response);

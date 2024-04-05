@@ -23,6 +23,14 @@ public class Reply {
 		this.replyWriter = replyWriter;
 		this.createDate = createDate;
 		this.status = status;
+	}	
+
+	public Reply(int replyNo, String replyContent, int refBNo, String replyWriter) {
+		super();
+		this.replyNo = replyNo;
+		this.replyContent = replyContent;
+		this.refBNo = refBNo;
+		this.replyWriter = replyWriter;
 	}
 
 	public int getReplyNo() {
