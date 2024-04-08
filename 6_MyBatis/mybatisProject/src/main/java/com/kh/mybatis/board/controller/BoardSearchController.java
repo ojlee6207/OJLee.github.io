@@ -53,7 +53,13 @@ public class BoardSearchController extends HttpServlet {
 		request.setAttribute("map", map);
 		request.setAttribute("list", list);
 		
+		request.setAttribute("condition", condition);
+		request.setAttribute("keyword", keyword);
+		
 		request.getRequestDispatcher("WEB-INF/views/board/boardListView.jsp").forward(request, response);
+//		response.sendRedirect("list.bo");
+		// request에 저장한 객체(pi, map, list)는 request 관련으로 정보를 보내야한다. response로 하는것이 아님.
+		
 	}
 
 	/**

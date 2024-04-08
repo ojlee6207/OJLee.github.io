@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 		// 전달되는 데이터를 뽑아내서 서비스 객체 보내서 회원 정보 조회
 //		String userId = request.getParameter("userId");
 //		String userPwd = request.getParameter("userPwd");

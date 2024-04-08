@@ -25,10 +25,17 @@
 					<option value="title">제목</option>
 					<option value="content">내용</option>
 				</select>
-				<input type="text" name="keyword" />
+				<input type="text" name="keyword" value="${keyword}" />
 				<button type="submit">검색</button>
 			</form>
 		</div>
+		<c:if test="${ not empty condition }">
+			<script>
+				$(function(){
+					$("#search-area option[value=${condition}]").attr("selected", true);					
+				})		
+			</script>
+		</c:if>
 		<br>
 		
 		<table id="list-area">
@@ -63,28 +70,36 @@
 		<br>
 		
 		<div id="paging-area">
-			<c:if test="${keyword eq null}">
-				<c:if test="${pi.currentPage gt 1 }">
-					<a href="list.bo?cpage=${ pi.currentPage-1 }">&lt;</a>
-				</c:if>
-				<c:forEach var ="p" begin="${pi.startPage}" end="${pi.endPage}">
-					<a href="list.bo?cpage=${ p }">${ p }</a>
-				</c:forEach>
-				<c:if test="${pi.currentPage lt pi.maxPage }">
-					<a href="list.bo?cpage=${ pi.currentPage+1 }">&gt;</a>				
-				</c:if>
+			<c:if test="${pi.currentPage gt 1 }">
+				<a href="list.bo?cpage=${ pi.currentPage-1 }">&lt;</a>
 			</c:if>
+			<c:forEach var ="p" begin="${pi.startPage}" end="${pi.endPage}">
+				<c:choose>
+					<c:when test="${ empty condition }">
+						<a href="list.bo?cpage=${ p }">${ p }</a>
+					</c:when>
+					<c:otherwise>
+						<a href="search.bo?cpage=${ p }&condition=${condition}&keyword=${keyword}">${ p }</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${pi.currentPage lt pi.maxPage }">
+				<a href="list.bo?cpage=${ pi.currentPage+1 }">&gt;</a>				
+			</c:if>
+
+		<%-- 	
 			<c:if test="${keyword ne null}">
 				<c:if test="${pi.currentPage gt 1}">
-					<a href="search.bo?cpage=${ pi.currentPage-1 }&condition=${param.condition}&keyword=${param.keyword}">&lt;</a>
+					<a href="search.bo?cpage=${ pi.currentPage-1 }&condition=${condition}&keyword=${keyword}">&lt;</a>
 				</c:if>
 				<c:forEach var ="p" begin="${pi.startPage}" end="${pi.endPage}">
-					<a href="search.bo?cpage=${ p }&condition=${param.condition}&keyword=${param.keyword}">${ p }</a>
+					<a href="search.bo?cpage=${ p }&condition=${condition}&keyword=${keyword}">${ p }</a>
 				</c:forEach>
 				<c:if test="${pi.currentPage lt pi.maxPage }">
-					<a href="search.bo?cpage=${ pi.currentPage+1 }&condition=${param.condition}&keyword=${param.keyword}">&gt;</a>				
+					<a href="search.bo?cpage=${ pi.currentPage+1 }&condition=${condition}&keyword=${keyword}">&gt;</a>				
 				</c:if>
 			</c:if>
+		--%>
 		</div>
 		<br>
 	</div>
