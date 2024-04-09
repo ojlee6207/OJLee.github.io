@@ -1,5 +1,21 @@
 package com.kh.spring.member.service;
 
-public interface MemberService {
+import com.kh.spring.member.model.vo.Member;
 
+public interface MemberService {
+	
+	// 로그인 서비스 => SELECT
+	Member loginMember(Member m);
+	
+	// 회원 가입 서비스	=> INSERT
+	int insertMember(Member m);
+	
+	// 정보 수정 서비스 => UPDATE
+	int updateMember(Member m);
+	
+	// 회원 탈퇴 서비스 => UPDATE
+	int deleteMember(String userId);
+	
+	// 아이디 등록 체크 => SELECT
+	int checkUserId(String userId);
 }

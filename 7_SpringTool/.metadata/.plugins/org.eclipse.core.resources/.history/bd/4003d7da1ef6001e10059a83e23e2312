@@ -1,0 +1,76 @@
+package com.kh.spring.member.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller		// Controller의 어노테이션 작성 시 빈 스캐닝을 통해 자동 Bean 등록이 됨
+public class MemberController {
+
+//	// 로그인 관련 메소드
+//	@RequestMapping(value="login.me")	// RequestMapping타입의 어노테이션 작성 HandlerMapping 등록 
+//	public void loginMember() {	
+//		
+//	}
+//	// 회원 가입 관련 메소드
+//	@RequestMapping(value="insert.me")
+//	public void insertMember() {
+//		
+//	}
+//	
+//	// 회원 수정 관련 메소드
+//	@RequestMapping(value="update.me")
+//	public void updateMember() {
+//		
+//	}
+	/*
+	 * * 요청 시 전달되는 데이터에 대한 처리 방법
+	 * 
+	 * 1) HttpServletRequest 이용 (기존 jsp/servlet 방식)
+	 * 		: 해당 메소드의 매개변수로 HttpservletRequest 작성 시
+	 * 		 스프링 컨테이너가 해당 메소드 호출 시 자동으로 해당 객체를 생성해서 전달 해 줌
+	 * */
+	// 로그인 관련 메소드
+	/*
+	@RequestMapping(value="login.me")	 
+	public String loginMember(HttpServletRequest request) {
+		String userId = request.getParameter("id");
+		String userPwd = request.getParameter("pwd");
+		
+		System.out.println("ID--->"+userId);
+		System.out.println("PWD--->"+userPwd);
+		
+		return "main";
+	}
+	*/
+	/*
+	 * 2) @RequestParam 어노테이션 이용
+	 * 		=> request.getParameter("키값") : 밸류 // 이 작업을 대체
+	 * */
+	/*
+	@RequestMapping("login.me")		// value 생략 가능 (url mapping 값만 작성 시)
+	public String loginMember(@RequestParam(value="id", defaultValue="xx") String userId,
+							  @RequestParam("pwd") String userPwd) {
+		
+		System.out.println("ID--->"+userId);
+		System.out.println("PWD--->"+userPwd);
+		
+		return "main";
+	}
+	*/
+	/*
+	 * 3) @RequestParam 어노테이션 생략
+	 * 		=> 주의!! 매개변수명을 name값(요청 시 데이터의 키값)과 동이랗게 작성해야 자동으로 값이 주입됨
+	 * */
+	@RequestMapping("login.me")
+	public String loginMember(String id, String pwd) {
+		
+		System.out.println("ID--->"+id);
+		System.out.println("PWD--->"+pwd);
+		
+		return "main";
+	}
+}

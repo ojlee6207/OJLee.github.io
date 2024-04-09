@@ -1,0 +1,21 @@
+package com.kh.spring.member.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller		// Controller의 어노테이션 작성 시 빈 스캐닝을 통해 자동 Bean 등록이 됨
+public class MemberController {
+
+	// 로그인 관련 메소드
+	public void loginMember() {
+		
+	}
+	// 회원 가입 관련 메소드
+	public void insertMember() {
+		
+	}
+	
+	// 회원 수정 관련 메소드
+	public void updateMember() {
+		
+	}
+}

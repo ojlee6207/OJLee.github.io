@@ -1,5 +1,49 @@
 package com.kh.spring.member.service;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kh.spring.member.model.dao.MemberDao;
+import com.kh.spring.member.model.vo.Member;
+
+// @Component만 추가해도 빈 등록 가능. @Service는 좀 더 구체화 함
+@Service
 public class MemberServiceImpl implements MemberService {
+
+	@Autowired
+	private MemberDao mDao;
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
+	@Override
+	public Member loginMember(Member m) {
+		return mDao.loginMember(sqlSession, m);
+	}
+
+	@Override
+	public int insertMember(Member m) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateMember(Member m) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteMember(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int checkUserId(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

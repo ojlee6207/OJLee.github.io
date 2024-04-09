@@ -1,0 +1,9 @@
+package com.kh.spring.member.service;
+
+import org.springframework.stereotype.Service;
+
+// @Component만 추가해도 빈 등록 가능
+@Service
+public class MemberServiceImpl implements MemberService {
+
+}

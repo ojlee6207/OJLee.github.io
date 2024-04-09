@@ -1,0 +1,41 @@
+package com.kh.spring.member.service;
+
+import org.springframework.stereotype.Service;
+
+import com.kh.spring.member.model.vo.Member;
+
+// @Component만 추가해도 빈 등록 가능. @Service는 좀 더 구체화 함
+@Service
+public class MemberServiceImpl implements MemberService {
+
+	@Override
+	public Member loginMember(Member m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertMember(Member m) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateMember(Member m) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteMember(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int checkUserId(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,44 @@
+package com.kh.spring.member.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller		// Controller의 어노테이션 작성 시 빈 스캐닝을 통해 자동 Bean 등록이 됨
+public class MemberController {
+
+//	// 로그인 관련 메소드
+//	@RequestMapping(value="login.me")	// RequestMapping타입의 어노테이션 작성 HandlerMapping 등록 
+//	public void loginMember() {	
+//		
+//	}
+//	// 회원 가입 관련 메소드
+//	@RequestMapping(value="insert.me")
+//	public void insertMember() {
+//		
+//	}
+//	
+//	// 회원 수정 관련 메소드
+//	@RequestMapping(value="update.me")
+//	public void updateMember() {
+//		
+//	}
+	/*
+	 * * 요청 시 전달되는 데이터에 대한 처리 방법
+	 * 
+	 * 1) HttpServletRequest 이용 (기존 jsp/servlet 방식)
+	 * 		: 해당 메소드의 매개변수로 HttpservletRequest 작성 시
+	 * 		 스프링 컨테이너가 해당 메소드 호출 시 자동으로 해당 객체를 생성해서 전달 해 줌
+	 * */
+	// 로그인 관련 메소드
+	@RequestMapping(value="login.me")	 
+	public void loginMember(HttpServletRequest request) {
+		String userId = request.getParameter("id");
+		String userPwd = request.getParameter("pwd");
+		
+		System.out.println("ID--->"+userId);
+		System.out.println("PWD--->"+userPwd);
+		
+	}
+}
