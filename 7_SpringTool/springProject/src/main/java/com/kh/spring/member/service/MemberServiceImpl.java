@@ -24,14 +24,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insertMember(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mDao.insertMember(sqlSession, m);
 	}
 
 	@Override
 	public int updateMember(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mDao.updatemember(sqlSession, m);
 	}
 
 	@Override

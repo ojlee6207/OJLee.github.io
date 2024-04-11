@@ -2,6 +2,27 @@ package com.kh.spring.member.model.vo;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+/*
+ * * Lombok (롬복): 라이브러리 (pom.xml dependency 추가 필요)
+ * 
+ * 1) 라이브러리 다운 후 적용(pom.xml)
+ * 2) 다운로드 된 jar를 찾아 설치 작업(작업하는 IDE 선택 후 설치)
+ * 3) IDE 재시작
+ */
+
+@NoArgsConstructor	// 기본 생성자
+//@RequiredArgsConstructor
+@AllArgsConstructor // 모든 필드를 매개변수로 하는 생성자
+@Setter				// setter
+@Getter				// getter
+@ToString			// toString
+//@Data
 public class Member {
 	
 	private String userId;
@@ -9,127 +30,12 @@ public class Member {
 	private String userName;
 	private String email;
 	private String gender;
-	private int age;
+	private String age;
 	private String phone;
 	private String address;
 	private Date enrollDate;
 	private Date modifyDate;
 	private String status;
 	
-	public Member() {
-		super();
-	}
-
-	public Member(String userId, String userPwd, String userName, String email, String gender, int age, String phone,
-			String address, Date enrollDate, Date modifyDate, String status) {
-		super();
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
-		this.email = email;
-		this.gender = gender;
-		this.age = age;
-		this.phone = phone;
-		this.address = address;
-		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.status = status;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getUserPwd() {
-		return userPwd;
-	}
-
-	public void setUserPwd(String userPwd) {
-		this.userPwd = userPwd;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public Date getEnrollDate() {
-		return enrollDate;
-	}
-
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
-	}
-
-	public Date getModifyDate() {
-		return modifyDate;
-	}
-
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	@Override
-	public String toString() {
-		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", email=" + email
-				+ ", gender=" + gender + ", age=" + age + ", phone=" + phone + ", address=" + address + ", enrollDate="
-				+ enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
-	}
-	
-	
+//	private String uName; // jsp에서 ${loginUser.uName} => .getuName() find... => 변수명 최소 소문자 2개로 시작하여 camelCase
 }

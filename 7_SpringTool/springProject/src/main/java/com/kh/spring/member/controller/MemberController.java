@@ -3,8 +3,9 @@ package com.kh.spring.member.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +18,9 @@ public class MemberController {
 	// private MemberService mService = new MemberServiceImpl();
 	@Autowired		// DI(의존성 주입)
 	private MemberService mService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 //	// 로그인 관련 메소드
 //	@RequestMapping(value="login.me")	// RequestMapping타입의 어노테이션 작성 HandlerMapping 등록 
@@ -116,7 +120,7 @@ public class MemberController {
 		if(loginUser == null) { // 로그인 실패 => 에러메세지 담아(request) 에러페이지 응답
 			model.addAttribute("errorMsg", "로그인 실패");
 			// WEB-INF/views/common/errorPage.jsp
-			return "common/errorPage";
+			return "common/errorPage"; // servlet-context.xml에 저장 중
 		} else { // 로그인 성공 => 로그인 정보 담아(session) 메인페이지 이동
 			session.setAttribute("loginUser", loginUser);
 			return "redirect:/";
@@ -130,7 +134,7 @@ public class MemberController {
 	 */
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv) {
-		
+		/** 암호화 처리 전 방식
 		Member loginUser = mService.loginMember(m);
 
 		if(loginUser == null) { // 로그인 실패 => 에러메세지 담아(request) 에러페이지 응답
@@ -141,6 +145,26 @@ public class MemberController {
 			mv.setViewName("redirect:/");
 		}
 		return mv;
+		**/
+		
+		// 암호화 처리 후 방식
+		// - Member m 객체 userId : 사용자가 입력한 id
+		//				  userPwd: 사용자가 입력한 비밀번호(평문)
+		Member loginUser = mService.loginMember(m);
+		// - Member loginUser(아이디로 조회한 정보)
+		//			userPwd : DB로 저장된 비밀번호(암호문)
+		
+		if(loginUser != null 
+				&& bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) { // 로그인 성공 => 로그인 정보 담아(session) 메인페이지 이동
+			session.setAttribute("loginUser", loginUser);
+			mv.setViewName("redirect:/");
+			
+		} else { // 로그인 실패 => 에러메세지 담아(request) 에러페이지 응답 
+			mv.addObject("errorMsg", "로그인 실패");
+			mv.setViewName("common/errorPage");
+			
+		}
+		return mv;
 	}
 	
 	@RequestMapping("logout.me")
@@ -148,5 +172,67 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 		
+	}
+	
+	@RequestMapping("enrollForm.me")
+	public String enrollForm() {
+		return "member/memberEnrollForm";
+	}
+	
+	@RequestMapping("insert.me")
+	public String insertMember(Member m, Model model, HttpSession session) {
+		
+//		System.out.println(m);
+		// * 발생 문제
+		// 1) 한글 깨짐 => encoding filter 등록(web.xml)
+		// 2) 나이(int) 입력하지 않았을 경우 ""(null String) 전달되어
+		//	  int형 필드에 담을 수 없음 => 400 에러 (Member의 age 타입 변경: int -> String)
+		// 3) 비밀번호 값이 사용자가 입력한 값 그대로(평문)
+		//	  => Bcrypt 방식의 암호화-> 암호문으로 변경
+		//		[1] Spring security module에서 제공(pom.xml 라이브러리 등록 필요)   
+		//		[2] BcryptPassWordEncoder 클래스 Bean으로 등록하기 (xml파일 (webapp/WEB-INF/spring/Spring Bean Configuration file 만들기))
+		//		[3] web.xml에 spring-security.xml 파일을 프리로딩(pre-loading)할 수 있도록 설정
+//		System.out.println("비밀번호 평문 ---> " + m.getUserPwd());
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+//		System.out.println("암호문 ---> " + encPwd);
+		
+		m.setUserPwd(encPwd);	// Member객체의 userPwd 필드의 값을 암호문으로 변경
+		
+		int result = mService.insertMember(m);
+		
+		if(result >0) {	// 회원 가입 성공
+			session.setAttribute("alertMsg", "회원가입에 성공했습니다. 반갑습니다");
+			return "redirect:/";
+		} else {
+			model.addAttribute("errorMsg", "회원가입 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("mypage.me")
+	public String myPage() {
+		
+		
+		return "member/mypage";
+	}
+	
+	
+	@RequestMapping("update.me")
+	public ModelAndView updateMember(Member m, HttpSession session, ModelAndView mv) {
+		
+		int result = mService.updateMember(m);
+		
+		if(result >0) {
+			// 수정된 정보를 세션에 반영
+			session.setAttribute("alertMsg", "회원정보 갱신에 성공했습니다.");
+			session.setAttribute("loginUser", m);
+			mv.setViewName("redirect:/");
+
+		} else {
+			mv.addObject("errorMsg", "로그인 실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
 	}
 }
