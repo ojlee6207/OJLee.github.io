@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>2_JSP</name>
+	<name>1_Servlet</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -30,7 +30,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1710046729079</id>
+			<id>1710046729072</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
