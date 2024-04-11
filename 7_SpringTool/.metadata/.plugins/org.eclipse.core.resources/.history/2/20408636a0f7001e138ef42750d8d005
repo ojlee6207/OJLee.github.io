@@ -1,0 +1,22 @@
+package com.kh.spring.member.controller;
+
+public class MemberEnrollController {
+
+	@RequestMapping("enroll.me")
+	public String loginMember(Member m, Model model, HttpSession session) {
+		
+//		System.out.println(m.getUserId()); 
+//		System.out.println(m.getUserPwd());
+		
+		Member loginUser = mService.loginMember(m);
+
+		if(loginUser == null) { // 로그인 실패 => 에러메세지 담아(request) 에러페이지 응답
+			model.addAttribute("errorMsg", "로그인 실패");
+			// WEB-INF/views/common/errorPage.jsp
+			return "common/errorPage"; // servlet-context.xml에 저장 중
+		} else { // 로그인 성공 => 로그인 정보 담아(session) 메인페이지 이동
+			session.setAttribute("loginUser", loginUser);
+			return "redirect:/";
+		}
+	}
+}

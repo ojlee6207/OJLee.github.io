@@ -1,0 +1,20 @@
+package com.kh.spring.member.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.spring.member.model.vo.Member;
+
+public class MemberEnrollController {
+
+	@RequestMapping("enroll.me")
+	public String loginMember(Member m, Model model, HttpSession session) {
+		
+//		System.out.println(m.getUserId()); 
+//		System.out.println(m.getUserPwd());
+
+		return "../member/memberEnrollForm"
+	}
+}
