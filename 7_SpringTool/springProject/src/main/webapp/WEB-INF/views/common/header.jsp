@@ -6,15 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>MenuBar</title>
-<link
+	<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-	crossorigin="anonymous">
-<script
+	crossorigin="anonymous" />
+	<script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous">
+	</script>
+	
+	<!-- JavaScript -->
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+	<!-- Default theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+	<!-- Semantic UI theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 <style>
 #top-area {
 	display: flex;
@@ -67,7 +78,7 @@ nav div.active {
 
 	<c:if test="${ not empty alertMsg }">
 		<script>
-			alert("${alertMsg}");
+			alertify.alert('INFO', "${alertMsg}");
 		</script>	
 		<c:remove var="alertMsg" scope="session" />
 	</c:if>
@@ -100,7 +111,7 @@ nav div.active {
 		<div class="row">
 			<div class="active col-3">HOME</div>
 			<div class="col">공지사항</div>
-			<div class="col">자유게시판</div>
+			<div class="col" onclick="location.href='list.bo'">자유게시판</div>
 			<div class="col">사진게시판</div>
 		</div>
 	</nav>

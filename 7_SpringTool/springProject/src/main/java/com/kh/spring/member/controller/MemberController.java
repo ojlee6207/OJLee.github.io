@@ -226,13 +226,42 @@ public class MemberController {
 		if(result >0) {
 			// 수정된 정보를 세션에 반영
 			session.setAttribute("alertMsg", "회원정보 갱신에 성공했습니다.");
-			session.setAttribute("loginUser", m);
-			mv.setViewName("redirect:/");
+			session.setAttribute("loginUser", mService.loginMember(m));
+			mv.setViewName("redirect:mypage.me");
 
 		} else {
-			mv.addObject("errorMsg", "로그인 실패");
+			mv.addObject("errorMsg", "회원정보 수정 실패");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
+	}
+	
+	@RequestMapping("delete.me")
+	public String deleteMember(String userId, String userPwd, HttpSession session, Model model) {
+		
+		// 입력된 비밀번호와 DB에 저장된 비밀번호가 일치 하는지
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(bcryptPasswordEncoder.matches(userPwd, loginUser.getUserPwd())) { 
+			// - 일치하면 DB 작업 진행(update, status'N')
+			int result = mService.deleteMember(userId);
+			
+			if(result >0) { // 회원 탈퇴 성공 => session 영역에 저장한 로그인 정보 제거
+				// alert("탈퇴 성공, 감사합니다");
+				// 메인 페이지 url 재요청
+				session.removeAttribute("loginUser");
+				session.setAttribute("alertMsg", "회원탈퇴에 성공했습니다. 감사합니다.");
+				return "redirect:/";
+				
+			} else {	// 회원 탈퇴 실패 => "에러메세지", 포워딩
+				model.addAttribute("errorMsg", "탈퇴에 실패했습니다.");
+				return "common/errorPage";
+			}
+			
+		} else { 		// - 미일치시 alert("잘못된 비밀번호입니다. 다시 입력해주세요")
+			// mypage url 재요청
+			session.setAttribute("alertMsg", "잘못된 비밀번호입니다. 다시 입력해주세요");
+			return "redirect:mypage.me";
+		}	
 	}
 }

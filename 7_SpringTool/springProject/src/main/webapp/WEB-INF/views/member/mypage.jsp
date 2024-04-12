@@ -86,7 +86,7 @@
               <h1 class="modal-title fs-5">회원탈퇴</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form>
+            <form action="delete.me" method="POST">
                 <div class="modal-body" >
                     <div align="center">
                         <b>
@@ -96,7 +96,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="userPwd" class="col-form-label">비밀번호</label>
-                        <input type="password" class="form-control" placeholder="Enter Password.." id="userPwd" />
+                        <input type="password" class="form-control" placeholder="Enter Password.." name="userPwd" id="userPwd" />
+                        <%-- 사용자 ID값을 폼 전송시 포함하여 전달하게(화면 표시 X) --%>
+                        <input type="hidden" value="${loginUser.userId}" name="userId" />
                     </div>
                 </div>
                 <div class="modal-footer">
