@@ -20,11 +20,12 @@
             
             <h2>회원가입</h2>
             <br>
-            <form action="insert.me" method="post">
+            <form action="insert.me" method="post" id="enrollForm">
 
                 <div class="form-group">
                     <label for="userId">* ID </label>
                     <input type="text" class="form-control mb-3" name="userId" id="userId" placeholder="Enter ID.." required>
+                    <div id="checkResult" style="font-size:0.8em; display:none;"></div>
                     
                     <label for="userPwd">* Password </label>
                     <input type="password" class="form-control mb-3" name="userPwd" id="userPwd" placeholder="Enter Password.." required>
@@ -56,13 +57,53 @@
                 </div>
                 <br>
                 <div class="btns">
-                    <button type="submit" class="btn btn-primary">회원가입</button>
+                    <button type="submit" class="btn btn-primary" disabled>회원가입</button>
                     <button type="reset" class="btn btn-danger">초기화</button>
                 </div>
             </form>
         </div>
         <br><br>
     </div>
+    
+    <script>  	
+    	$(function(){
+    		const $idInput = $("#enrollForm input[name=userId]");
+    		
+    		$idInput.keyup(function(){
+    			const value = $idInput.val();
+    			if (value.length >=5) {
+    				$.ajax({
+        				url: "idCheck.me",
+    					data: { id: value },
+    					success: function(status) {
+    						console.log(value);
+    						console.log(status);
+    						
+    						if(status === "NNN") {
+    							$("#checkResult").show();
+    							$("#checkResult").css("color","red").text("중복된 아이디가 있습니다.");
+    							// 회원가입 버튼 비활성화
+    							$("#enroll :submit").attr("disabled", true);
+    						} else {
+    							$("#checkResult").show();
+    							$("#checkResult").css("color","green").text("사용가능한 아이디입니다.");
+    							// 회원가입 버튼 비활성화
+    							$("#enroll :submit").removeAttr("disabled");
+    						}
+    						
+    					},
+    					error: function() {
+    						console.log("ajax통신 실패");
+    					}
+        			});
+    			} else {
+    				$("#checkResult").hide();
+    				$("#enrollForm :submit").attr("disabled", true);
+    			}
+    			
+    		});
+    	})
+    </script>
 
     <%-- footer --%>
     <jsp:include page="../common/footer.jsp" />

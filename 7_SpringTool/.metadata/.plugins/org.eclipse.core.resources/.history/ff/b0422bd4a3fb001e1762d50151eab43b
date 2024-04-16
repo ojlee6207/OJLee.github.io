@@ -1,0 +1,30 @@
+package com.kh.ajax.controller;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class AjaxController {
+	
+	/*
+	 * 1) HttpServletResponse 객체 이용
+	 * 	(기존 servlet/jsp 방식 => stream 이용) 
+	 */
+	
+	@RequestMapping("ajax1.do")
+	public String requestMethod(String name, int age, HttpServletResponse response) {
+		
+		System.out.println(name);
+		System.out.println(age);
+		
+		String responseData = "이름은 " + name + "이고,"
+							+ "나이는 "+ age + "살입니다.";
+		
+		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().print(responseData);
+		
+		return "redirect:/";
+	}
+}

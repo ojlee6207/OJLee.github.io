@@ -54,4 +54,19 @@
 				ORIGIN_NAME, CHANGE_NAME
 			FROM BOARD WHERE BOARD_NO = #{boardNo}
 	</select>
+	
+	<update id="deleteBoard">
+		UPDATE BOARD SET STATUS = 'N'
+					   , ORIGIN_NAME = NULL
+					   , CHANGE_NAME = NULL
+			WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<update id="updateBoard">
+		UPDATE BOARD SET BOARD_TITLE = #{boardTitle}
+					   , ORIGIN_NAME = #{originName}
+					   , CHANGE_NAME = #{changeName}
+					   , BOARD_CONTENT = #{boardContent}
+			WHERE BOARD_NO = #{boardNo}
+	</update>
 </mapper>

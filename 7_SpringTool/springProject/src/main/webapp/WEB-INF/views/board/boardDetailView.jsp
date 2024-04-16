@@ -86,11 +86,28 @@
 
             <div align="center">
                 <!-- 작성자와 로그인한 계정이 동일한 경우만 표시 -->
-                <a href="" class="btn btn-primary">수정</a>
-                <a href="" class="btn btn-danger">삭제</a>
+                <c:if test="${loginUser.userId == blist.boardWriter}">
+                	<a class="btn btn-primary" onclick="postFormSubmit(1);">수정</a>
+                	<a class="btn btn-danger" onclick="postFormSubmit(2);">삭제</a>
+                </c:if>
             </div>
             <br><br>
-
+            
+            <form id="postForm" action="" method="post">
+            	<input type="hidden" name="bno" value="${blist.boardNo}" />
+            	<input type="hidden" name="filepath" value="${blist.changeName}" />
+            </form>
+            
+            <script>	<!-- function postFormSubmit(type)-->
+            	const postFormSubmit = (type) => {
+            		if (type == 1) {	// 수정요청
+            			$("#postForm").attr("action", "updateForm.bo").submit();
+            		} else {	// 삭제요청
+            			$("#postForm").attr("action", "delete.bo").submit();
+            		}
+            	}
+            </script>
+            
             <table id="replyArea" class="table" align="center">
                 <thead>
                     <tr>

@@ -70,4 +70,13 @@
 		UPDATE MEMBER SET STATUS='N'
 			WHERE USER_ID = #{id}
 	</update>
+	
+	<select id="countUserId" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+			WHERE USER_ID = #{userId}
+	</select>
 </mapper>
+
+
+
+

@@ -26,4 +26,8 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.deleteMember", id);
 	}
 
+	public int countUserId(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("memberMapper.countUserId", userId);
+	}
+
 }
