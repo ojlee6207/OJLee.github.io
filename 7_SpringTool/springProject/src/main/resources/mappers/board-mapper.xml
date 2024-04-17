@@ -15,6 +15,15 @@
 		<result column="create_date" property="createDate" />
 		<result column="status" property="status" />
 	</resultMap>
+	
+	<resultMap id="replyResultSet" type="Reply">
+		<result column="reply_no" property="replyNo" />
+		<result column="reply_content" property="replyContent" />
+		<result column="ref_bno" property="ref_BNo" />
+		<result column="reply_writer" property="replyWriter" />
+		<result column="create_date" property="createDate" />
+		<result column="status" property="status" />
+	</resultMap>
 
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*) FROM BOARD WHERE STATUS='Y'
@@ -69,4 +78,27 @@
 					   , BOARD_CONTENT = #{boardContent}
 			WHERE BOARD_NO = #{boardNo}
 	</update>
+	
+	<select id="selectReplyList" resultMap="replyResultSet" parameterType="Reply">
+		 select reply_no 
+		 	, reply_writer
+	        , reply_content
+	        , to_char(create_date, 'YYYY-MM-DD') as "create_date"
+			from reply
+			where ref_bno =#{boardNo} and status = 'Y'
+	</select>
+	
+	<insert id="insertReply">
+		insert into reply (reply_no
+						 , reply_content
+						 , ref_bno	
+						 , reply_writer
+						 , to_char(create_date, 'YYYY-MM-DD') as "create_date")
+			values ( seq_rno.nextval 
+				   , #{replyContent}
+				   , #{boardNo}
+				   , #{replyWriter}
+				   , sysdate )
+	</insert>
+	
 </mapper>

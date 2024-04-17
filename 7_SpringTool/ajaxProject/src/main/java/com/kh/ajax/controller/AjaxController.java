@@ -1,8 +1,14 @@
 package com.kh.ajax.controller;
 
+import java.util.ArrayList;
+
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
+import com.kh.ajax.model.vo.Member;
 
 @Controller
 public class AjaxController {
@@ -43,4 +49,89 @@ public class AjaxController {
 		return responseData;
  	}
 	
+	/*
+	 * 3) 다수의 응답데이터 리턴 
+	 */
+	
+	/*
+	@RequestMapping("ajax2.do")
+	public void ajaxDo2(String name, int age, HttpServletResponse response) throws IOException {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		response.getWriter().print(name);
+		response.getWriter().print(age);
+		// => 하나의 문자열 형태로 응답
+		
+		
+		// JSON(JavaScript Object Notation) 형태로 응답
+		// - JSONArray : [값, 값, 값, ...] (Java : ArrayList)
+		// - JSONObject : {키:값, 키:값, ...} (Java : HashMap)
+		JSONObject jobj = new JSONObject();
+		// => {"name": 입력이름, "age": 입력나이}
+		jobj.put("name", name);
+		jobj.put("age", age);
+		
+		response.setContentType("application/json;charset=UTF-8");
+		response.getWriter().print(jobj);
+	}
+	*/
+	
+	// JSON형태로 리턴
+	
+	@ResponseBody
+	@RequestMapping(value="ajax2.do", produces="application/json;charset=UTF-8")
+	public String ajaxDo2(String name, int age) {
+		
+		JSONObject jobj = new JSONObject();
+		jobj.put("name", name);
+		jobj.put("age", age);
+		
+		String jobjstr = jobj.toJSONString();
+		return jobjstr;
+	}
+	
+	/*
+	 * 4) vo 객체로 리턴 
+	 */
+	@ResponseBody
+	@RequestMapping(value="search.me", produces="application/json;charset=UTF-8")
+	public String searchMember(int no) {
+		Member m = new Member("아이유", "iuuu", "pass01", 30, "01020203113"); 
+		// JSONObject 형태로 응답
+		/*
+		JSONObject jobj = new JSONObject();
+		jobj.put("userName", m.getUserName());
+		jobj.put("userId", m.getUserId());
+		jobj.put("userPwd", m.getUserPwd());
+		jobj.put("age", m.getAge());
+		jobj.put("phone", m.getPhone());
+		*/
+//		Gson gson = new Gson();
+//		return gson.toJson(m);
+		return new Gson().toJson(m);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="searchMembers.me", produces="application/json;charset=UTF-8")
+	public String searchMembers() {
+		
+		ArrayList<Member> list = new ArrayList<Member>();
+		list.add(new Member("아이유", "iuuu", "pass01", 30, "01020203113")); 
+		list.add(new Member("청하", "chungha", "pass03", 27, "01043123523"));
+		list.add(new Member("박지성", "parkjs", "pass03", 40, "01068779023"));
+		
+		// JSONObject 형태로 응답
+		/*
+		JSONObject jobj = new JSONObject();
+		jobj.put("userName", m.getUserName());
+		jobj.put("userId", m.getUserId());
+		jobj.put("userPwd", m.getUserPwd());
+		jobj.put("age", m.getAge());
+		jobj.put("phone", m.getPhone());
+		*/
+//		Gson gson = new Gson();
+//		return gson.toJson(m);
+		return new Gson().toJson(list);
+	}
 }

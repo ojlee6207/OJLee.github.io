@@ -13,10 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.spring.board.model.vo.Board;
+import com.kh.spring.board.model.vo.Reply;
 import com.kh.spring.board.service.BoardService;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
@@ -24,6 +27,8 @@ import com.kh.spring.common.template.Pagination;
 @Controller
 public class BoardController {
 	
+	// Spring에서는 @Autowired 기능을 통해서 interface를 객체로 받으면
+	// 향후 구현체 이름을 바꾸어도 문제가 없지만, 다른 tool에서는 문제 발생함.
 	@Autowired
 	private BoardService bService;
 	
@@ -190,6 +195,28 @@ public class BoardController {
 			model.addAttribute("errorMsg", "게시글 추가 실패");
 			return "common/errorPage";
 		}
+	}
+	@ResponseBody
+	@RequestMapping(value="rlist.bo", produces="application/json; charset=UTF-8")
+	public String selectReply(int bno, Model model) {
+		ArrayList<Reply> rlist = bService.selectReplyList(bno);
+		
+		model.addAttribute("rlist", rlist);
+		
+		return new Gson().toJson(rlist);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="rinsert.bo", produces="application/json; charset=UTF-8")
+	public String insertReply(Reply r) {
+		
+		System.out.println("@@@");
+		System.out.println(r);
+		System.out.println("@@@");
+		
+		int result = bService.insertReply(r);
+		
+		return result > 0 ? "success" : "failed";
 	}
 	
 	

@@ -26,7 +26,7 @@
 			
 		});
 	</script>  -->
-	<button onclick="ajaxTest1();">전송</button>
+	<button onclick="ajaxTest1();">전송1</button>
 	<script>
 		const ajaxTest1 = () => {
 			$.ajax({
@@ -44,5 +44,107 @@
 			})
 		}
 	</script>
+	
+	<h3>* 다수의 응답데이터 처리</h3>
+	<button onclick="ajaxTest2();">전송2</button>
+	<script>
+		const ajaxTest2 = () => {
+			$.ajax({
+				url: 'ajax2.do',
+				data: {
+					name: $("#name").val(),
+					age: $("#age").val()
+				},
+				success: function(result) {
+					console.log(result);
+				},
+				error: function() {
+					console.log("ajax 2 통신 실패");			
+				}
+			})
+		}
+	</script>
+	<hr>
+	<h3>* 회원번호 입력 후 회원정보 조회하기</h3>
+	회원번호 : <input type="number" id="userNo" />
+	<button id="searchBtn">조회</button>
+	<div id="userInfo"></div>
+	<script>
+		// 모든 요소들이 화면에 표시된 후, 조회버튼 클릭 시 ajax 요청
+		// -url : search.me
+		// -data : { no: 입력한 회원번호}
+		$(function() {
+			$("#searchBtn").click(function(){
+				$.ajax({
+					url: "search.me",
+					data: { no: $("#userNo").val() },
+					success:function(data){
+						console.log(data);
+						
+						let value="<ul>"
+									+"<li>이름: "+data.userName+"</li>"
+									+"<li>나이: "+data.age+"</li>"
+									+"<li>아이디: "+data.userId+"</li>"
+									+"<li>비밀번호: "+data['userPwd']+"</li>"
+									+"<li>연락처: "+data['phone']+"</li>"
+								  +"</ul>";
+						$("#userInfo").html(value);
+					},
+					error:function(){
+						console.log("search 통신 실패")
+					}
+				
+				})
+			});
+		});
+	</script>
+	<hr>
+	<h3>* 회원 목록(리스트) 조회하기</h3>
+	<button onclick="searchMemberList();">목록 조회</button>
+	<br><br>
+	<table id="memberList" border="1">
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>이름</th>
+				<th>나이</th>
+				<th>연락처</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+		</tbody>
+	</table>
+	<script>
+		const searchMemberList = () => {
+			$.ajax({
+				url: "searchMembers.me",
+				success: function(list) {
+					console.log(list);
+					let value = "";
+					
+					for(let i in list) {
+						value += "<tr>"
+							+"<td>"+list[i].userId+"</td>"
+							+"<td>"+list[i].userName+"</td>"
+							+"<td>"+list[i].age+"</td>"
+							+"<td>"+list[i].phone+"</td>"
+							+"</tr>"
+					}
+					$("#memberList > tbody").html(value);
+				},
+				error: function(){
+					console.log("ajax 통신 망")
+				}
+				
+			})
+		}
+	</script>
 </body>
 </html>
+
+
+
+
+
+
