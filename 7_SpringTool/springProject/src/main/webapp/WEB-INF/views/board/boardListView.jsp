@@ -96,9 +96,9 @@
 
             <br clear="both">
 
-            <form action="" id="searchForm">
+            <form action="search.se" id="searchForm">
                 <div class="select">
-                    <select name="condition" id="" class="custom-select form-select">
+                    <select name="condition" id="condition" class="custom-select form-select">
                         <option value="writer">작성자</option>
                         <option value="title">제목</option>
                         <option value="content">내용</option>

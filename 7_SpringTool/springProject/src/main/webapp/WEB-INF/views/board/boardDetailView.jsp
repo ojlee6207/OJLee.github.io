@@ -162,6 +162,8 @@
             <script>
             	$(function(){
             		selectReplyList();
+            		
+            		setInterval(selectReplyList, 1000);
             	});
             	
 				const addReply = () => {
@@ -186,8 +188,9 @@
 	            					alertify.alert("ERROR", "댓글 추가 실패");
 	            				}
 	            			},
-	            			error: function(){
+	            			error: function(err){
 	            				console.log("댓글 요청 ajax 통신 실패");
+	            				console.log(err);
 	            			}	            			
 	            		})
             		} else {

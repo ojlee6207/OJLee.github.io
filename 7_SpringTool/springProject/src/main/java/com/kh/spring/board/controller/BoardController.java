@@ -207,7 +207,7 @@ public class BoardController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="rinsert.bo", produces="application/json; charset=UTF-8")
+	@RequestMapping(value="rinsert.bo", produces="text/html; charset=UTF-8")
 	public String insertReply(Reply r) {
 		
 		System.out.println("@@@");
@@ -217,6 +217,17 @@ public class BoardController {
 		int result = bService.insertReply(r);
 		
 		return result > 0 ? "success" : "failed";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="topList.bo", produces="application/json; charset=UTF-8")
+	public String topListBoard(Model model) {
+		
+		ArrayList<Board> blist = bService.topListBoard();
+		model.addAttribute("blist", blist);
+		
+		return new Gson().toJson(blist);
+		
 	}
 	
 	

@@ -115,7 +115,7 @@ nav div.active {
 	<hr>
 	<nav class="container text-center">
 		<div class="row">
-			<div class="active col-3">HOME</div>
+			<div class="col-3" onclick="location.href='<%= request.getContextPath() %>'">HOME</div>
 			<div class="col">공지사항</div>
 			<div class="col" onclick="location.href='list.bo'">자유게시판</div>
 			<div class="col">사진게시판</div>

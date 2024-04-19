@@ -86,19 +86,28 @@
 	        , to_char(create_date, 'YYYY-MM-DD') as "create_date"
 			from reply
 			where ref_bno =#{boardNo} and status = 'Y'
+			order by reply_no desc
 	</select>
 	
 	<insert id="insertReply">
 		insert into reply (reply_no
 						 , reply_content
 						 , ref_bno	
-						 , reply_writer
-						 , to_char(create_date, 'YYYY-MM-DD') as "create_date")
+						 , reply_writer )
 			values ( seq_rno.nextval 
 				   , #{replyContent}
-				   , #{boardNo}
-				   , #{replyWriter}
-				   , sysdate )
+				   , #{refBNo}
+				   , #{replyWriter} )
 	</insert>
+	
+	<select id="topListBoard" resultMap="boardResultSet">
+		select * 
+			from (select BOARD_NO, BOARD_TITLE, BOARD_WRITER, COUNT, 
+				TO_CHAR(CREATE_DATE,'YYYY-MM-DD') AS "CREATE_DATE", ORIGIN_NAME
+		        from board
+		        where status = 'Y'
+		        order by count desc)
+			where rownum between 1 and 5
+	</select>
 	
 </mapper>
