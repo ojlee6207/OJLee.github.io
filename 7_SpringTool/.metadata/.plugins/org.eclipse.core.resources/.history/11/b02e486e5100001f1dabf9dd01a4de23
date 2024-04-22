@@ -1,0 +1,13 @@
+package com.kh.opendata.service;
+
+import java.util.ArrayList;
+
+import com.kh.opendata.model.vo.AirVO;
+
+public class AirPollutionService {
+
+	public ArrayList<AirVO> selectAirPollution(String location) {
+		return null;
+	}
+
+}

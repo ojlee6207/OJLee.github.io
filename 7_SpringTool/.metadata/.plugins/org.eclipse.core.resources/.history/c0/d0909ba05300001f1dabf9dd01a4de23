@@ -1,0 +1,29 @@
+package com.kh.opendata.controller;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.opendata.model.vo.AirVO;
+import com.kh.opendata.service.AirPollutionService;
+
+@Controller
+public class APIController {
+	
+	@Autowired
+	private AirPollutionService apService;
+	
+	@RequestMapping("air.do")
+	public String AirpollutionCheck (String location, Model model) {
+		
+		ArrayList<AirVO> list = apService.selectAirPollution(location);
+		
+		model.addAttribute("list", list );
+		
+		return "redirect:/";
+	}
+	
+}

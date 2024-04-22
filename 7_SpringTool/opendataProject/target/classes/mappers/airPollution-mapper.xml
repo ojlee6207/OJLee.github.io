@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AirMapper">
+	<resultMap id="airResultSet" type="Air">
+		<result column="stationName" property="stationName" />
+		<result column="dataTime" property="dataTime" />
+		<result column="khaiValue" property="khaiValue" />
+		<result column="pm10Value" property="pm10Value" />
+		<result column="so2Value" property="so2Value" />
+		<result column="coValue" property="coValue" />
+		<result column="no2Value" property="no2Value" />
+		<result column="o3Value" property="o3Value" />				
+	</resultMap>
+
+	<select id="selectAirPollution" resultMap="airResultSet">
+		select stationName,
+			   dataTime,
+			   khaiValue,
+			   pm10Value,
+			   so2Value,
+			   coValue,
+			   no2Value,
+			   o3Value
+			   from ?????		
+	</select>
+
+</mapper>
+
+
+
+
