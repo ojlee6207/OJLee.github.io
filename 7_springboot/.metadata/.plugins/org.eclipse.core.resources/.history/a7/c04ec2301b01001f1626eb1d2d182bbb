@@ -1,0 +1,5 @@
+package com.kh.mvnProject.controller;
+
+public class InitController {
+
+}
