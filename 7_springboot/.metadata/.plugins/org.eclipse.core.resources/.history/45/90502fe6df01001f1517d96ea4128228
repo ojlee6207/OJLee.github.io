@@ -1,0 +1,28 @@
+package com.kh.glogin.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import jakarta.servlet.http.HttpSession;
+
+@Controller
+public class LoginController {
+
+	@RequestMapping("/")
+	public String initPage() {
+		return "index";
+	}
+	
+	@RequestMapping("/login/oauth/google")
+	public String googleLoginResult(String code, String error, HttpSession session, Model model) {
+		if (code == null) {	// 인증 실패
+			model.addAttribute("errorMsg", error);
+			return "redirect:/failure";
+		} else {			// 인증 성공
+			session.setAttribute("user", code);
+			return "redirect:/success";
+		}
+	}
+	
+}

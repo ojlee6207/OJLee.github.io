@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>KH Homepage</title>
+<style>
+    #boardList {text-align: center;}
+    #boardList>tbody>tr:hover{cursor:pointer;}
+</style>
+</head>
+<body>
+	<jsp:include page="common/header.jsp" />
+	
+    <div class="outer">
+        <br><br>
+        <div class="innerOuter" style="padding: 5% 10%">
+            <h2>인기 게시글(TOP 5)</h2>
+            <br>
+            <table id="boardList" class="table table-hover" align="center">
+                <thead>
+                    <th>글번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
+                    <th>작성일</th>
+                    <th>첨부파일</th>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+            <br>
+			<script>
+
+        </div>
+        <br><br>
+    </div>
+	
+	<jsp:include page="common/footer.jsp" />
+</body>
+</html>

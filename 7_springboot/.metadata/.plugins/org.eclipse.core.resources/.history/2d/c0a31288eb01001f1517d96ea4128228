@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>KH Homepage</title>
+<style>
+
+    #boardList {text-align: center;}
+    #boardList>tbody>tr:hover{cursor:pointer;}
+    
+</style>
+</head>
+<body>
+	
+		
+    <div class="outer">
+    </div>
+	
+</body>
+</html>
