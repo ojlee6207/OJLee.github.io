@@ -4,5 +4,6 @@
 <aop-project name="khLoginService"/>
 <aop-project name="grdProject"/>
 <aop-project name="mavenProject"/>
+<aop-project name="khEmailService"/>
 <aop-project name="grdProject-1"/>
 </aop-reference-model>

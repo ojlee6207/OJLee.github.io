@@ -1,0 +1,23 @@
+package com.kh.email.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MailController {
+
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	@Value("${spring.mail.username}")
+	private String sender;
+
+	@RequestMapping("sendMail.do")
+	public String sendMail() {
+		
+	}
+	
+}

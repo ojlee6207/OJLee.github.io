@@ -1,0 +1,13 @@
+package com.kh.email;
+
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+public class MailTestRun {
+
+	public static void main(String[] args) {
+		
+		 JavaMailSenderImpl	mailSender = new JavaMailSenderImpl();
+		
+	}
+
+}

@@ -2,4 +2,8 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="java.util.Properties"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
 </qualifiedTypeNameHistroy>
