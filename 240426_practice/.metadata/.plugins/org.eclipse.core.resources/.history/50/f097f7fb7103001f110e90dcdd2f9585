@@ -1,0 +1,5 @@
+package com.kh.blog.model.vo;
+
+public class BlogPost {
+
+}

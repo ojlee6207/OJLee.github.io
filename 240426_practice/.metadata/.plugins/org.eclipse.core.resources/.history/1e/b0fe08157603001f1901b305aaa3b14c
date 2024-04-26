@@ -1,0 +1,13 @@
+package com.kh.blog.model.dao;
+
+import org.mybatis.spring.SqlSessionTemplate;
+
+import com.kh.blog.model.vo.BlogPost;
+
+public class BlogDAO {
+
+	public int addBlogPost(SqlSessionTemplate sqlSession, BlogPost bp) {
+		return sqlSession.insert("blogMapper.addBlogPost", bp);
+	}
+
+}

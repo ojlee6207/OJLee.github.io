@@ -1,0 +1,7 @@
+package com.kh.blog.service;
+
+public interface BlogService {
+
+	int addBlogPost(int postId);
+
+}
