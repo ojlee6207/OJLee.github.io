@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="blogMapper">
+
+	<resultMap id="blogResultSet" type="BlogPost">
+		
+	</resultMap>
+	
+	<insert id="addBlogPost">
+		INSERT INTO BLOG_POST( POST_ID
+						 , TITLE
+						 , CONTENT
+						 , CREATED_AT
+							)
+		VALUES ( SEQ_PNO.NEXTVAL
+			   , #{title}
+			   , #{content}
+			   , SYSDATE
+				)					
+	</insert>
+
+</mapper>

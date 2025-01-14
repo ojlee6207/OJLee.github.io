@@ -1,0 +1,10 @@
+package com.kh.email.model.vo;
+
+@Data
+public class EmailDetail {
+
+	private String subject;
+	private String content;
+	private String receiver;
+	
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="khHomePage"/>
+<aop-project name="khLoginService"/>
+<aop-project name="grdProject"/>
+<aop-project name="mavenProject"/>
+<aop-project name="khEmailService"/>
+<aop-project name="grdProject-1"/>
+</aop-reference-model>

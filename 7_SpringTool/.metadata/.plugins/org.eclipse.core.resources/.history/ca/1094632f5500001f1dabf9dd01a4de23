@@ -1,0 +1,40 @@
+package com.kh.opendata.controller;
+
+import java.net.URLEncoder;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.kh.opendata.model.vo.AirVO;
+import com.kh.opendata.run.AirPollutionApp;
+
+@Controller
+public class APIController {
+	
+	public static final String serviceKey= "DVulpeocmyzMzFtlDOrAN2uGcUWKiO9jDB6XFmKgO3eYgnxzSairA9ZMwYjooZOscis5i60h4wj3yeXt94xMkw%3D%3D";
+	
+	@ResponseBody
+	@RequestMapping(value="air.do", produces="application/json;charset=UTF-8")
+	public String AirpollutionCheck (String location) {
+		
+		String url ="https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty";
+		// 요청시 전달 데이터 (Request Parameter)
+		url += "?serviceKey=" + serviceKey;	// => 서비스키를 잘못 입력한 경우(요청한 경우) "SERVICE_KEY_IS_NOT_REGISTERED_ERROR" 에러메세지 확인됨
+		url += "&returnType=json";
+//		url += "&numOfRows=100";
+//		url	+= "&sidoName=서울";	// => 한글이 포함되어 UTF-8 인코딩 처리 
+		url	+= "&sidoName="+URLEncoder.encode(location,"UTF-8");
+		
+		ArrayList<AirVO> alist = AirPollutionApp.list;
+		
+		session.setAttribute("alist", alist);
+		
+		return "redirect:/";
+	}
+	
+}

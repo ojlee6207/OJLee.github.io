@@ -1,0 +1,16 @@
+package com.kh.opendata.run;
+
+public class AirPollutionApp {
+
+	public static void main(String[] args) {
+
+		// openAPI 요청 주소
+		String url ="https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty";
+		// 요청시 전달 데이터 (Request Parameter)
+		url += "?serviceKey=서비스키";
+		url += "&returnType=json";
+		url	+= "&sidoName=서울"; 
+		
+	}
+
+}

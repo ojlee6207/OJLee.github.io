@@ -1,0 +1,5 @@
+package com.kh.opendata.model.dao;
+
+public class AirDao {
+
+}

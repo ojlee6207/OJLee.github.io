@@ -1,0 +1,5 @@
+package com.kh.glogin.interceptor;
+
+public class AuthInterceptor {
+
+}

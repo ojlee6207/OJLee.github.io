@@ -1,0 +1,16 @@
+package com.kh.opendata.model.dao;
+
+import java.util.ArrayList;
+
+import org.mybatis.spring.SqlSessionTemplate;
+
+import com.kh.opendata.model.vo.AirVO;
+
+public class AirDao {
+
+	public ArrayList<AirVO> selectAirPollution(SqlSessionTemplate sqlSession, String location) {
+		
+		return (ArrayList)sqlSession.selectList("AirMapper.selectAirPollution", location);
+	}
+
+}

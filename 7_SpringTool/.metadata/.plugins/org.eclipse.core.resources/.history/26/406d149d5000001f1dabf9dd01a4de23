@@ -1,0 +1,18 @@
+package com.kh.opendata.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class APIController {
+	
+	@RequestMapping("air.do")
+	public String AirpollutionCheck (Model model) {
+		
+		
+		
+		return "";
+	}
+	
+}

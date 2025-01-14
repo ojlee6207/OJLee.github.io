@@ -1,0 +1,21 @@
+package com.kh.blog.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kh.blog.model.dao.BlogDAO;
+
+@Service
+public class BlogServiceImpl implements BlogService {
+
+	@Autowired
+	public BlogDAO bDao;
+	
+	@Override
+	public int addBlogPost(int postId) {
+		SqlSessionTemplate sqlSession = new SqlSessionTemplate();
+		
+		return bDao.addBlogPost(sqlSession, postId); 
+	}
+
+}
