@@ -1,0 +1,74 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spring Project</title>
+</head>
+<body>
+	<jsp:include page="common/header.jsp" />
+	
+    <div class="outer">
+        <br><br>
+        <div class="innerOuter" style="padding: 5% 10%">
+            <h2>인기 게시글(TOP 5)</h2>
+            <br>
+            <table id="boardList" class="table table-hover" align="center">
+                <thead>
+                    <th>글번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
+                    <th>작성일</th>
+                    <th>첨부파일</th>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+            <br>
+			<script>
+				$(function(){
+					$("#boardList>tbody>tr").click(function(){
+						location.href = 'detail.bo?bno='+$(this).children(".bno").text();
+					})
+					showBoardTopList();
+				})
+				
+				const showBoardTopList = () => {
+					
+					$.ajax({
+						url: 'topList.bo',
+						success: function(blist) {
+							console.log(blist);
+							let value = "";
+							for(let i in blist) {
+								value += "<tr>"
+										+"<td>"+blist[i].boardNo+"</td>"
+										+"<td>"+blist[i].boardTitle+"</td>"
+										+"<td>"+blist[i].boardWriter+"</td>"
+										+"<td>"+blist[i].count+"</td>"
+										+"<td>"+blist[i].createDate+"</td>";
+								if(blist[i].originName !== null) {
+									value += "<td>"+blist[i].originName+"</td>"+"</tr>"; 
+								} else {
+									value += "<td></td></tr>";
+								}
+							}
+            				$("#boardList > tbody").html(value);
+						},
+						error: function() {
+							console.log("ajax 통신 실패")
+						}
+					})
+					
+				}
+			</script>
+        </div>
+        <br><br>
+    </div>
+	
+	<jsp:include page="common/footer.jsp" />
+</body>
+</html>

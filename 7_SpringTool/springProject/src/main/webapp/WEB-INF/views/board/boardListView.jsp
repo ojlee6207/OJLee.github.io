@@ -33,7 +33,7 @@
 
             <%-- 로그인 시에만 글쓰기 버튼 표시 --%>
             <c:if test="${loginUser ne null }">
-            	<a href="" class="btn btn-secondary" style="float:right">글쓰기</a>
+            	<a href="enrollForm.bo" class="btn btn-secondary" style="float:right">글쓰기</a>
             </c:if>
             <br>
             
@@ -56,7 +56,7 @@
                     	<c:otherwise>
                     		<c:forEach var="b" items="${ blist }">
                     			<tr>
-                    				<td>${b.boardNo}</td>
+                    				<td class="bno">${b.boardNo}</td>
                     				<td>${b.boardTitle}</td>
                     				<td>${b.boardWriter}</td>
                     				<td>${b.count}</td>
@@ -71,6 +71,14 @@
                 </tbody>
             </table>
             <br>
+			<script>
+				$(function(){
+					$("#boardList>tbody>tr").click(function(){
+						location.href = 'detail.bo?bno='+$(this).children(".bno").text();
+					})
+				})
+			</script>
+
 
             <div id="pagingArea">
                 <ul class="pagination">
@@ -88,9 +96,9 @@
 
             <br clear="both">
 
-            <form action="" id="searchForm">
+            <form action="search.se" id="searchForm">
                 <div class="select">
-                    <select name="condition" id="" class="custom-select form-select">
+                    <select name="condition" id="condition" class="custom-select form-select">
                         <option value="writer">작성자</option>
                         <option value="title">제목</option>
                         <option value="content">내용</option>

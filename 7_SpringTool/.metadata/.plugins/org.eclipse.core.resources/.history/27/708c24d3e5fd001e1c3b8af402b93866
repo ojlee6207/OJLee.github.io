@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spring Project</title>
+</head>
+<body>
+	<jsp:include page="common/header.jsp" />
+	
+    <div class="outer">
+        <br><br>
+        <div class="innerOuter" style="padding: 5% 10%">
+            <h2>게시판</h2>
+            <br>
+
+            <%-- 로그인 시에만 글쓰기 버튼 표시 --%>
+            <c:if test="${loginUser ne null }">
+            	<a href="enrollForm.bo" class="btn btn-secondary" style="float:right">글쓰기</a>
+            </c:if>
+            <br>
+            
+            <br>
+            <table id="boardList" class="table table-hover" align="center">
+                <thead>
+                    <th>글번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
+                    <th>작성일</th>
+                    <th>첨부파일</th>
+                </thead>
+
+                <tbody>
+                    <c:choose>
+                    	<c:when test="${ empty blist }">
+                    		<tr><td colspan="6">데이터가 없습니다.</td></tr>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<c:forEach var="b" items="${ blist }">
+                    			<tr>
+                    				<td class="bno">${b.boardNo}</td>
+                    				<td>${b.boardTitle}</td>
+                    				<td>${b.boardWriter}</td>
+                    				<td>${b.count}</td>
+                    				<td>${b.createDate}</td>
+                    				<td>
+	                    				<c:if test="${b.originName ne null}">💾</c:if>
+	                    			</td>
+                    			</tr>
+                    		</c:forEach>
+                    	</c:otherwise>
+                    </c:choose>                       
+                </tbody>
+            </table>
+            <br>
+			<script>
+				$(function(){
+					$("#boardList>tbody>tr").click(function(){
+						location.href = 'detail.bo?bno='+$(this).children(".bno").text();
+					})
+				})
+			</script>
+        </div>
+        <br><br>
+    </div>
+	
+	<jsp:include page="common/footer.jsp" />
+</body>
+</html>

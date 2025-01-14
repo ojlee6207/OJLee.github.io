@@ -1,0 +1,16 @@
+package com.kh.ajax.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class AjaxController {
+	
+	@RequestMapping("ajax1.do")
+	public String requestMethod(String name, String age) {
+		
+		
+		
+		return "redirect:/";
+	}
+}

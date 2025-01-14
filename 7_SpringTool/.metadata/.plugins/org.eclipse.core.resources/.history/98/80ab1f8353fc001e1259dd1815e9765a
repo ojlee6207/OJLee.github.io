@@ -1,0 +1,68 @@
+package com.kh.ajax.controller;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class AjaxController {
+	
+	/*
+	 * 1) HttpServletResponse 객체 이용
+	 * 	(기존 servlet/jsp 방식 => stream 이용) 
+	 */
+	/*
+	@RequestMapping("ajax1.do")
+	public void requestMethod(String name, int age, HttpServletResponse response) throws IOException {
+		
+		System.out.println(name);
+		System.out.println(age);
+		
+		String responseData = "이름은 " + name + "이고,"
+							+ "나이는 "+ age + "살입니다.";
+		
+		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().print(responseData);
+		
+	}*/
+	
+	/*
+	 *	2) 응답 데이터를 문자열 혀앹로 리턴(HttpServletRequest 객체 x) 
+	 *
+	 *	* 문자열로 리턴하는 경우 포워딩 방식 => 응답페이지
+	 *
+	 *	--> 따라서, 리턴하는 문자열이 응답페이지가 아닌 응답데이터라는 것을 설정해야함.
+	 *		@ResponseBody 어노테이션 사용
+	 *	--> @RequestMapping에 produces 로 인코딩 설정
+	 */
+	@ResponseBody
+	@RequestMapping(value="ajax1.do", produces="text/html;charset=UTF-8")
+	public String ajaxDo1(String name, int age) {
+		String responseData = "이름은 " + name + "이고, "
+							+ "나이는 " + age + "살입니다.";
+		return responseData;
+ 	}
+	
+	/*
+	 * 3) 다수의 응답데이터 리턴 
+	 */
+	@RequestMapping("ajax2.do")
+	public void ajaxDo2(String name, int age, HttpServletResponse response) throws IOException {
+		/*
+		response.setContentType("text/html; charset=UTF-8");
+		
+		response.getWriter().print(name);
+		response.getWriter().print(age);
+		// => 하나의 문자열 형태로 응답
+		*/
+		
+		// JSON(JavaScript Object Notation) 형태로 응답
+		// - JSONArray : [값, 값, 값, ...] (Java : ArrayList)
+		// - JSONObject : {키:값, 키:값, ...} (Java : HashMap)
+	}
+	
+}

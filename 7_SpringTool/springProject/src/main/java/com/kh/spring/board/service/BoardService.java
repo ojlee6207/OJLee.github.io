@@ -31,4 +31,6 @@ public interface BoardService {
 	// * 댓글 작성 (ajax)		-C
 	int insertReply(Reply r);
 	
+	ArrayList<Board> topListBoard();
+	
 }

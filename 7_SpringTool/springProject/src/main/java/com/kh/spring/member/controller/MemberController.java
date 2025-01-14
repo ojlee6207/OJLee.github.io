@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.member.model.vo.Member;
@@ -263,5 +264,21 @@ public class MemberController {
 			session.setAttribute("alertMsg", "잘못된 비밀번호입니다. 다시 입력해주세요");
 			return "redirect:mypage.me";
 		}	
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="idCheck.me", produces="text/html;charset=UTF-8")
+	public String checkUserId(String id) {
+		int count = mService.checkUserId(id);
+		System.out.println(id);
+		/*
+		if(count > 0) {	// 사용 불가능 -> 해당 아이디 저장되어있음(중복)
+			return "NNN";
+		} else { 	// 사용 가능
+			return "YYY";
+		}
+		*/
+		System.out.println(count);
+		return count > 0 ? "NNN" : "YYY";
 	}
 }
