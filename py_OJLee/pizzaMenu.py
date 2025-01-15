@@ -94,25 +94,25 @@ def priceCalculator(order,menu):
     return tot_price
     
 
-if __name__ == '__main__':
-    pizza_menu = {'페퍼로니 피자':3000,
-                '치즈 피자':3200,
-                '콤비네이션 피자':3500,
-                '불고기 피자':3600,
-                '해산물 피자':3800}
-    drink_menu = {'콜라': 1500,
-                '사이다': 1500,
-                '생수': 1000}
+# if __name__ == '__main__':
+#     pizza_menu = {'페퍼로니 피자':3000,
+#                 '치즈 피자':3200,
+#                 '콤비네이션 피자':3500,
+#                 '불고기 피자':3600,
+#                 '해산물 피자':3800}
+#     drink_menu = {'콜라': 1500,
+#                 '사이다': 1500,
+#                 '생수': 1000}
     
-    order_pizza = select(pizza_menu, '피자')
-    print(order_pizza)
-    order_drink = select(drink_menu, '음료')
-    print(order_drink)
+#     order_pizza = select(pizza_menu, '피자')
+#     print(order_pizza)
+#     order_drink = select(drink_menu, '음료')
+#     print(order_drink)
 
-    tot_pizza = priceCalculator(order_pizza,pizza_menu)
-    tot_drink = priceCalculator(order_drink,drink_menu)
+#     tot_pizza = priceCalculator(order_pizza,pizza_menu)
+#     tot_drink = priceCalculator(order_drink,drink_menu)
 
-    print(f'전체 가격(피자+음료) : {tot_pizza+tot_drink:,}원')
+#     print(f'전체 가격(피자+음료) : {tot_pizza+tot_drink:,}원')
 
 # def pizzaCalculator():
 #     tot_price = 0
