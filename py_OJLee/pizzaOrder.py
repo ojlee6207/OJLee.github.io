@@ -36,7 +36,21 @@
 
 import pizzaMenu as pM
 
-print(pM.pizza_select())
+pizza_menu = {'페퍼로니 피자':3000,
+                '치즈 피자':3200,
+                '콤비네이션 피자':3500,
+                '불고기 피자':3600,
+                '해산물 피자':3800}
+drink_menu = {'콜라': 1500,
+                '사이다': 1500,
+                '생수': 1000}
+    
+order_pizza = pM.select(pizza_menu, '피자')
+print(order_pizza)
+order_drink = pM.select(drink_menu, '음료')
+print(order_drink)
 
+tot_pizza = pM.priceCalculator(order_pizza,pizza_menu)
+tot_drink = pM.priceCalculator(order_drink,drink_menu)
 
-# print(pM.drink_select())
+print(f'전체 가격(피자+음료) : {tot_pizza+tot_drink}')
